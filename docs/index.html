@@ -118,7 +118,7 @@ footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:48px}
   <div class="num" style="background:var(--red)">1</div>
   <span class="tag">The only step you do by hand</span>
   <h2>Install Claude Code</h2>
-  <p>Claude Code is Claude living in a terminal on your computer, where it can create files, run programs and set things up for you. Open a terminal: on a Mac press <kbd>⌘</kbd>&nbsp;<kbd>Space</kbd> and type <em>Terminal</em>, and on Windows press <kbd>Start</kbd> and type <em>PowerShell</em>. Then paste this line and press <kbd>Enter</kbd>.</p>
+  <p>Claude Code is Claude living in a terminal on your computer, where it can create files, run programs and set things up for you. Open a terminal: on a Mac press <kbd>⌘</kbd>&nbsp;<kbd>Space</kbd> and type <em>Terminal</em>, and on Windows press <kbd>Start</kbd> and type <em>PowerShell</em> (not Command Prompt). Then paste this line and press <kbd>Enter</kbd>.</p>
   <div class="tabs" role="tablist">
     <button role="tab" aria-selected="true" data-os="mac">Mac</button>
     <button role="tab" aria-selected="false" data-os="win">Windows</button>
@@ -129,9 +129,9 @@ footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:48px}
   <div class="code"><pre>mkdir builds
 cd builds
 claude</pre></div>
-  <p>Claude opens your browser so you can log in with your Claude account. Once you're back in the terminal, type <code>/model</code> and make sure <strong>Opus 5.5</strong> is picked, because it is the smartest model and the rest of this guide counts on it.</p>
-  <div class="note"><strong>How to talk to Claude:</strong> type or paste what you want and press <kbd>Enter</kbd>. Claude asks before doing anything risky, and you can stop it at any moment with <kbd>Esc</kbd>. Next time you want to build, open a terminal and type <code>cd builds</code> and then <code>claude</code>.</div>
-  <p>From here on you don't type any commands. Each step below is a prompt that you copy and paste into Claude, and Claude does the setup itself. Whenever it needs your hands for a password, a login or a switch in Settings, it stops and tells you exactly what to click.</p>
+  <p>Claude opens your browser so you can log in with your Claude account, and when it asks whether you trust the folder, say yes. Back in the terminal, type <code>/model</code>, pick <strong>Opus 5.5</strong> with the arrow keys and press <kbd>Enter</kbd>, because it is the smartest model and the rest of this guide counts on it. If your Mac ever pops up a window offering to install developer tools, click Install and let it finish.</p>
+  <div class="note"><strong>How to talk to Claude:</strong> type or paste what you want and press <kbd>Enter</kbd>. Claude asks before doing anything risky, and you can stop it at any moment with <kbd>Esc</kbd>. Next time you want to build, open a terminal and type <code>cd builds</code> and then <code>claude</code>, or <code>claude --continue</code> to pick up your last conversation where you left it.</div>
+  <p>From here on you don't type any commands. Each step below is a prompt that you copy and paste into Claude, and Claude does the setup itself. Whenever it needs your hands for a login or a switch in Settings, it stops and tells you exactly what to click. Claude can't type your computer's password for you, so when something needs it, Claude gives you a line to paste into a second terminal window instead, which is normal.</p>
 </section>
 
 <section class="step" id="browser">
@@ -141,7 +141,7 @@ claude</pre></div>
   <p>With browser use, Claude can open websites in your Chrome, click around, fill in forms and check that the things it builds actually work. It uses the browser you're already logged into, so it can help with your real accounts.</p>
   <div class="code prompt"><pre>Set yourself up to control my Chrome browser with the official Claude in Chrome extension. Read https://code.claude.com/docs/en/chrome first so you follow the current steps.
 
-Walk me through the parts only I can do, one at a time, and wait for me after each: installing the extension from the Chrome Web Store, signing in to it with the same Claude account I use here, and anything I need to type or restart in this terminal. Turn browser use on by default so I don't have to do this again.
+Walk me through the parts only I can do, one at a time, and wait for me after each: installing the extension from the Chrome Web Store, signing in to it with the same Claude account I use here, and anything I need to type or restart in this terminal. If you need to be restarted, give me the exact line to type and remind me that "claude --continue" brings this conversation back. Turn browser use on by default so I don't have to do this again.
 
 When it works, prove it: open a new tab, go to wikipedia.org, and tell me today's featured article.</pre></div>
 </section>
@@ -153,9 +153,10 @@ When it works, prove it: open a new tab, go to wikipedia.org, and tell me today'
   <p>Computer use lets Claude see your screen and use any app with the mouse and keyboard, like Numbers, Photos or System Settings. It is a Mac feature in Claude Code for now. On Windows, skip this step: browser use covers most of what you'll need.</p>
   <div class="code prompt"><pre>Turn on your computer-use ability on this Mac. Read https://code.claude.com/docs/en/computer-use first so you follow the current steps.
 
-Tell me exactly what I have to do myself, one step at a time, and wait for me after each: the menu I need to open in this terminal, and the Accessibility and Screen Recording switches in macOS System Settings. If you need to be restarted, tell me what to type.
+If my plan or Claude Code version doesn't support it, tell me what to change and stop there. Otherwise tell me exactly what I have to do myself, one step at a time, and wait for me after each: the menu I need to open in this terminal, and the Accessibility and Screen Recording switches in macOS System Settings. macOS may make me quit and reopen the terminal, so before that, tell me how to get back to this conversation (cd builds, then claude --continue).
 
 When it works, prove it: open Calculator, work out 1234 × 5678 by clicking its buttons, and read me the answer from the screen.</pre></div>
+  <div class="note"><strong>While Claude drives:</strong> it sees whatever is on your screen, so close your banking and password windows first. You approve each app it wants to use, and <kbd>Esc</kbd> takes control back right away.</div>
   <h3>What to ask for once it works</h3>
   <p>Describe the result you want, say what "done" looks like, and tell Claude what it must ask you about first. Claude is good at checking its own work, so ask it to.</p>
   <div class="ideas">
@@ -173,13 +174,13 @@ When it works, prove it: open Calculator, work out 1234 × 5678 by clicking its 
   <p>Sooner or later Claude will need a password or an API key, for example to publish your website or log in to a service. Pasting those into the chat is a bad habit, because the chat is saved and you lose track of where your secrets went. Instead, Claude gets its own small <a href="https://bitwarden.com">Bitwarden</a> vault, separate from your personal passwords, and fetches secrets from it straight into the programs that need them.</p>
   <div class="code prompt"><pre>Set up safe secret storage for yourself using the Bitwarden CLI. Follow these rules the whole time: never ask me to type a password into this chat, and never print a secret's value, in your messages or in command output.
 
-1. Install the official Bitwarden CLI ("bw") for my operating system.
-2. Have me create a separate free Bitwarden account at bitwarden.com just for you (an email alias like name+claude@gmail.com works), so you can never see my personal vault. Wait while I do it, then tell me how to add a test item named "test" with any password.
-3. Write a small unlock script that I run myself in a separate terminal window. It logs in to that account and unlocks it with a hidden password prompt, then saves only the session key to a file in my home folder that only my user can read.
-4. Write a helper command that takes an item name, an environment variable name and a command, and runs that command with the item's password in that variable without ever printing it. If the vault is locked, it should say so and tell me to run the unlock script.
-5. Add short instructions to ~/.claude/CLAUDE.md so every future Claude session knows to use this helper for secrets, never prints them, and asks me to add any secret it needs to the Claude vault.
+1. Install the official Bitwarden CLI ("bw") for my operating system. If that needs my computer's password, give me the exact line to paste into a second terminal window.
+2. Have me create a separate free Bitwarden account at bitwarden.com just for you (an email alias like name+claude@gmail.com works), so you can never see my personal vault. Remind me to pick a master password I don't use anywhere else and write it on paper, because Bitwarden can't recover it. Then have me add an item named "test" with a dummy password like hello123 in the Bitwarden web vault.
+3. Write a small unlock script that I run myself in a separate terminal window, and make sure it runs on my operating system without extra fiddling. It logs in to that account, asking me for the email, master password and any emailed login code with hidden prompts, then saves only the session key to a file in my home folder that only my user can read.
+4. Write a helper command that takes an item name, an environment variable name and a command, and runs that command with the item's password in that variable, without ever printing it or putting it on a command line. If the vault is locked, it should say so and tell me to run the unlock script.
+5. Add short instructions to the CLAUDE.md file in my home folder's .claude directory so every future Claude session knows to use this helper for secrets, never prints them, and asks me to add any secret it needs to the Claude vault.
 6. Test it with the "test" item and show me only the number of characters in the password.</pre></div>
-  <div class="note"><strong>Using it later:</strong> when Claude says it needs, say, a Cloudflare token, add it to the Claude vault in the Bitwarden app or website under the name Claude suggests, then tell Claude it's there. If the vault has locked itself, run the unlock script again.</div>
+  <div class="note"><strong>Using it later:</strong> when Claude says it needs, say, a Cloudflare token, add it to the Claude vault in the Bitwarden app or website under the name Claude suggests, then tell Claude it's there. If the vault has locked itself, run the unlock script again. Only put secrets in this vault that you're happy for Claude to use, because keeping them out of the chat doesn't stop Claude from using them.</div>
 </section>
 
 <section class="step" id="remote">
@@ -189,11 +190,13 @@ When it works, prove it: open Calculator, work out 1234 × 5678 by clicking its 
   <p><a href="https://tailscale.com">Tailscale</a> puts your computer and your phone on a private network of your own, so you can connect to the computer from anywhere without opening it up to the internet. SSH is how you connect, and once you're in you just type <code>claude</code> like you would at home. This works from another laptop too.</p>
   <div class="code prompt"><pre>Set me up so I can connect to this computer from my phone or another computer, from anywhere, and keep working with you there. Use Tailscale and SSH, and walk me through the parts only I can do, one at a time, waiting for me after each.
 
+Whenever something needs my computer's password, give me the exact line to paste into a second terminal window, or tell me what to click.
+
 1. Install Tailscale on this computer from tailscale.com/download (on a Mac use the Standalone app, not the App Store one) and have me log in when you're ready.
-2. Turn on an SSH server that only I can log in to. On a Mac that means Remote Login in System Settings, on Windows the built-in OpenSSH Server, and on Linux Tailscale SSH.
-3. Install tmux (on Windows, find the closest equivalent) so my session keeps running if my phone loses signal.
-4. Stop the computer from going to sleep while it's plugged in, so I can always reach it.
-5. Tell me which apps to install on my phone: the Tailscale app, logged in to the same account, and Termius for SSH. Help me make an SSH key in Termius and add it to this computer so I don't need a password to connect. Give me the exact host name and username to type in.
+2. Turn on an SSH server for my user only. On a Mac that means I switch on Remote Login in System Settings, on Windows the built-in OpenSSH Server, and on Linux Tailscale SSH. Make it accept SSH keys only, never passwords, and if you can, only connections that come through Tailscale.
+3. Install tmux so my session keeps running if my phone loses signal. On Windows, explain what happens when the connection drops and set up the simplest workaround.
+4. Stop the computer from going to sleep while it's plugged in, so I can always reach it. If it's a laptop, tell me the lid has to stay open, and tell me whether disk encryption means someone has to log in at the computer after a restart.
+5. Tell me which apps to install on my phone: the Tailscale app, logged in to the same account, and Termius for SSH. Help me make an SSH key in Termius and send you only its public key, then add that key to this computer. Give me the exact host name and username to type in.
 6. Save a short cheat sheet to my home folder as remote-cheatsheet.txt with how to connect and the commands to type once I'm in (start or reattach to tmux, then go to my builds folder and run claude).
 
 When everything is set up, wait while I connect from my phone and tell you it worked.</pre></div>
