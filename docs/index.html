@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Everybody Can Build: start building things with AI</title>
+<meta name="description" content="A friendly step-by-step guide to building with Claude Code and Opus 5.5. Install it once by hand, then copy prompts that let Claude set up browser use, computer use, safe passwords and phone access for you.">
+<link rel="canonical" href="https://everybodycanbuild.com/">
+<meta name="theme-color" content="#fff6e6">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Everybody Can Build">
+<meta property="og:url" content="https://everybodycanbuild.com/">
+<meta property="og:title" content="Everybody Can Build">
+<meta property="og:description" content="You don't need to be a programmer to build things anymore. Install Claude Code, paste a few prompts, and join our Telegram group when you get stuck.">
+<meta property="og:image" content="https://everybodycanbuild.com/og.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Everybody Can Build: colorful toy blocks stacked into a tower next to the words Everybody can build">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Everybody Can Build">
+<meta name="twitter:description" content="You don't need to be a programmer to build things anymore. Install Claude Code, paste a few prompts, and join our Telegram group when you get stuck.">
+<meta name="twitter:image" content="https://everybodycanbuild.com/og.png?v=1">
+<meta name="twitter:image:alt" content="Everybody Can Build: colorful toy blocks stacked into a tower next to the words Everybody can build">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff6e6;--card:#fffdf8;--ink:#1d1a16;--mut:#5c554b;--line:#1d1a16;--red:#ff5a4e;--yel:#ffc53d;--blu:#3d8bff;--grn:#2fbf71;--pur:#9b6bff;--code:#1d1a16;--codefg:#fdf6e8;--shadow:#1d1a16}
+@media (prefers-color-scheme:dark){:root{--bg:#17150f;--card:#221f18;--ink:#f6efe2;--mut:#bdb3a2;--line:#f6efe2;--code:#0d0c09;--codefg:#f6efe2;--shadow:#000}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+h1,h2,h3,.btn,.num{font-family:"Bricolage Grotesque",system-ui,sans-serif}
+a{color:inherit;text-decoration-color:var(--blu);text-decoration-thickness:2px;text-underline-offset:3px}
+main{max-width:780px;margin:0 auto;padding:0 16px 80px}
+header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:56px 0 24px}
+h1{font-size:clamp(2.8rem,10vw,5.2rem);line-height:.92;margin:0 0 18px;font-weight:800;letter-spacing:-.03em}
+h1 span{display:inline-block;padding:0 .12em;border-radius:.12em;background:var(--yel);color:#1d1a16;transform:rotate(-2deg)}
+.lede{font-size:1.2rem;color:var(--mut);margin:0 0 26px}
+.lede strong{color:var(--ink)}
+.tower{width:150px}
+.tower rect{stroke:var(--line);stroke-width:3}
+.tower g{animation:drop .8s cubic-bezier(.3,1.5,.5,1) both}
+.tower g:nth-child(2){animation-delay:.15s}.tower g:nth-child(3){animation-delay:.3s}.tower g:nth-child(4){animation-delay:.45s}.tower g:nth-child(5){animation-delay:.6s}
+@keyframes drop{from{transform:translateY(-400px)}}
+@media (prefers-reduced-motion:reduce){.tower g{animation:none}}
+@media (max-width:600px){header{grid-template-columns:1fr}.tower{display:none}}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;padding:12px 20px;border:3px solid var(--line);border-radius:14px;background:var(--blu);color:#fff;text-decoration:none;box-shadow:4px 4px 0 var(--shadow);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--shadow)}
+.btn.alt{background:var(--card);color:var(--ink)}
+.ctas{display:flex;flex-wrap:wrap;gap:14px}
+.needs{background:var(--card);border:3px solid var(--line);border-radius:18px;padding:18px 22px;margin:40px 0 0;box-shadow:6px 6px 0 var(--shadow)}
+.needs h2{margin:0 0 6px;font-size:1.3rem}
+.needs ul{margin:0;padding-left:22px}
+.step{position:relative;margin:56px 0 0;padding-left:72px}
+.num{position:absolute;left:0;top:0;width:52px;height:52px;border:3px solid var(--line);border-radius:12px;display:grid;place-items:center;font-size:1.6rem;font-weight:800;color:#1d1a16;box-shadow:3px 3px 0 var(--shadow)}
+@media (max-width:600px){.step{padding-left:0}.num{position:static;margin-bottom:12px}}
+.step h2{font-size:clamp(1.6rem,5vw,2.1rem);line-height:1.1;margin:0 0 10px;letter-spacing:-.01em}
+.tag{display:inline-block;font:700 .75rem/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:6px 9px;border-radius:8px;border:2px solid var(--line);margin-bottom:12px;background:var(--card)}
+.tabs{display:flex;gap:8px;margin:14px 0 0}
+.tabs button{font:700 .95rem system-ui,sans-serif;padding:8px 14px;border:3px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:var(--card);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--code);color:var(--codefg)}
+.os[hidden]{display:none}
+.code{position:relative;background:var(--code);color:var(--codefg);border:3px solid var(--line);border-radius:14px;margin:12px 0 18px}
+.tabs+.code,.tabs+.os .code{margin-top:0;border-top-left-radius:0}
+.code pre{margin:0;padding:16px 18px;padding-right:96px;overflow-x:auto;font:15px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.code.prompt pre{font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;padding-right:18px;padding-top:52px}
+.copy{position:absolute;top:10px;right:10px;font:700 .85rem system-ui,sans-serif;padding:6px 12px;border-radius:9px;border:2px solid var(--codefg);background:transparent;color:var(--codefg);cursor:pointer}
+.copy.done{background:var(--grn);border-color:var(--grn);color:#fff}
+.code.prompt::before{content:"Paste this into Claude";position:absolute;top:14px;left:18px;font:700 .75rem/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--yel)}
+.note{border-left:6px solid var(--yel);background:var(--card);padding:12px 16px;border-radius:0 12px 12px 0;margin:16px 0;color:var(--mut)}
+.note strong{color:var(--ink)}
+kbd{font:600 .85em ui-monospace,Menlo,monospace;border:2px solid var(--line);border-bottom-width:3px;border-radius:6px;padding:0 6px;background:var(--card)}
+code{font:.9em ui-monospace,Menlo,monospace;background:var(--card);border:1px solid var(--mut);border-radius:5px;padding:1px 5px}
+ol li,ul li{margin:6px 0}
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0}
+.idea{background:var(--card);border:3px solid var(--line);border-radius:14px;padding:14px 16px;font-size:.98rem;box-shadow:3px 3px 0 var(--shadow)}
+.idea b{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin-bottom:4px}
+.community{margin:72px 0 0;background:var(--blu);color:#fff;border:3px solid var(--line);border-radius:22px;padding:30px 26px;box-shadow:8px 8px 0 var(--shadow)}
+.community h2{font-size:clamp(1.8rem,6vw,2.6rem);line-height:1;margin:0 0 12px}
+.community p{margin:0 0 20px;font-size:1.1rem}
+.community .btn{background:var(--yel);color:#1d1a16}
+footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:48px}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div>
+    <h1>Everybody can <span>build</span></h1>
+    <p class="lede">You don't need to be a programmer to make apps, websites, scripts and little helpers anymore. You need an idea and <strong>Claude</strong>. This page gets you from zero to building in one afternoon, and our Telegram group is there whenever you get stuck.</p>
+    <div class="ctas">
+      <a class="btn" href="#install">Start with step 1</a>
+      <a class="btn alt" href="https://t.me/everybodycanbuild">Join the Telegram group</a>
+    </div>
+  </div>
+  <svg class="tower" viewBox="0 0 150 220" aria-hidden="true">
+    <g><rect x="10" y="160" width="130" height="54" rx="8" fill="#3d8bff"/></g>
+    <g><rect x="22" y="108" width="80" height="50" rx="8" fill="#ff5a4e"/></g>
+    <g><rect x="62" y="56" width="70" height="50" rx="8" fill="#2fbf71"/></g>
+    <g><rect x="30" y="56" width="30" height="50" rx="8" fill="#9b6bff"/></g>
+    <g><rect x="50" y="6" width="54" height="48" rx="8" fill="#ffc53d"/></g>
+  </svg>
+</header>
+
+<section class="needs">
+  <h2>What you need</h2>
+  <ul>
+    <li>A Mac or a Windows PC. A Mac gets the most out of this, because Claude can only take over the whole screen on a Mac.</li>
+    <li>A paid Claude plan, Pro or Max, from <a href="https://claude.com/pricing">claude.com/pricing</a>. Pro is enough to start, and Max is worth it once you build every day.</li>
+    <li>Google Chrome, for the step where Claude learns to use your browser.</li>
+  </ul>
+</section>
+
+<section class="step" id="install">
+  <div class="num" style="background:var(--red)">1</div>
+  <span class="tag">The only step you do by hand</span>
+  <h2>Install Claude Code</h2>
+  <p>Claude Code is Claude living in a terminal on your computer, where it can create files, run programs and set things up for you. Open a terminal: on a Mac press <kbd>⌘</kbd>&nbsp;<kbd>Space</kbd> and type <em>Terminal</em>, and on Windows press <kbd>Start</kbd> and type <em>PowerShell</em>. Then paste this line and press <kbd>Enter</kbd>.</p>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-os="mac">Mac</button>
+    <button role="tab" aria-selected="false" data-os="win">Windows</button>
+  </div>
+  <div class="os" data-os="mac"><div class="code"><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div></div>
+  <div class="os" data-os="win" hidden><div class="code"><pre>irm https://claude.ai/install.ps1 | iex</pre></div></div>
+  <p>When it finishes, close the terminal window and open a fresh one so it notices the new program. Make a folder for your projects and start Claude inside it:</p>
+  <div class="code"><pre>mkdir builds
+cd builds
+claude</pre></div>
+  <p>Claude opens your browser so you can log in with your Claude account. Once you're back in the terminal, type <code>/model</code> and make sure <strong>Opus 5.5</strong> is picked, because it is the smartest model and the rest of this guide counts on it.</p>
+  <div class="note"><strong>How to talk to Claude:</strong> type or paste what you want and press <kbd>Enter</kbd>. Claude asks before doing anything risky, and you can stop it at any moment with <kbd>Esc</kbd>. Next time you want to build, open a terminal and type <code>cd builds</code> and then <code>claude</code>.</div>
+  <p>From here on you don't type any commands. Each step below is a prompt that you copy and paste into Claude, and Claude does the setup itself. Whenever it needs your hands for a password, a login or a switch in Settings, it stops and tells you exactly what to click.</p>
+</section>
+
+<section class="step" id="browser">
+  <div class="num" style="background:var(--yel)">2</div>
+  <span class="tag">Paste into Claude</span>
+  <h2>Let Claude use your browser</h2>
+  <p>With browser use, Claude can open websites in your Chrome, click around, fill in forms and check that the things it builds actually work. It uses the browser you're already logged into, so it can help with your real accounts.</p>
+  <div class="code prompt"><pre>Set yourself up to control my Chrome browser with the official Claude in Chrome extension. Read https://code.claude.com/docs/en/chrome first so you follow the current steps.
+
+Walk me through the parts only I can do, one at a time, and wait for me after each: installing the extension from the Chrome Web Store, signing in to it with the same Claude account I use here, and anything I need to type or restart in this terminal. Turn browser use on by default so I don't have to do this again.
+
+When it works, prove it: open a new tab, go to wikipedia.org, and tell me today's featured article.</pre></div>
+</section>
+
+<section class="step" id="computer">
+  <div class="num" style="background:var(--grn)">3</div>
+  <span class="tag">Paste into Claude · Mac only</span>
+  <h2>Let Claude use your whole computer</h2>
+  <p>Computer use lets Claude see your screen and use any app with the mouse and keyboard, like Numbers, Photos or System Settings. It is a Mac feature in Claude Code for now. On Windows, skip this step: browser use covers most of what you'll need.</p>
+  <div class="code prompt"><pre>Turn on your computer-use ability on this Mac. Read https://code.claude.com/docs/en/computer-use first so you follow the current steps.
+
+Tell me exactly what I have to do myself, one step at a time, and wait for me after each: the menu I need to open in this terminal, and the Accessibility and Screen Recording switches in macOS System Settings. If you need to be restarted, tell me what to type.
+
+When it works, prove it: open Calculator, work out 1234 × 5678 by clicking its buttons, and read me the answer from the screen.</pre></div>
+  <h3>What to ask for once it works</h3>
+  <p>Describe the result you want, say what "done" looks like, and tell Claude what it must ask you about first. Claude is good at checking its own work, so ask it to.</p>
+  <div class="ideas">
+    <div class="idea"><b>Build</b>Make me a one-page website for my bakery with our hours and menu, open it in Chrome, and fix anything that looks off on a phone-sized window.</div>
+    <div class="idea"><b>Browse</b>Find three flights to Lisbon for the second week of March under $500. Put them in a table, and don't book anything.</div>
+    <div class="idea"><b>Tidy up</b>Look through my Downloads folder, sort everything into folders by type, and show me the plan before you move a single file.</div>
+    <div class="idea"><b>Use any app</b>Open Numbers and turn the receipts in ~/Desktop/receipts into a monthly budget spreadsheet with a chart.</div>
+  </div>
+</section>
+
+<section class="step" id="passwords">
+  <div class="num" style="background:var(--pur)">4</div>
+  <span class="tag">Paste into Claude</span>
+  <h2>Give Claude passwords safely</h2>
+  <p>Sooner or later Claude will need a password or an API key, for example to publish your website or log in to a service. Pasting those into the chat is a bad habit, because the chat is saved and you lose track of where your secrets went. Instead, Claude gets its own small <a href="https://bitwarden.com">Bitwarden</a> vault, separate from your personal passwords, and fetches secrets from it straight into the programs that need them.</p>
+  <div class="code prompt"><pre>Set up safe secret storage for yourself using the Bitwarden CLI. Follow these rules the whole time: never ask me to type a password into this chat, and never print a secret's value, in your messages or in command output.
+
+1. Install the official Bitwarden CLI ("bw") for my operating system.
+2. Have me create a separate free Bitwarden account at bitwarden.com just for you (an email alias like name+claude@gmail.com works), so you can never see my personal vault. Wait while I do it, then tell me how to add a test item named "test" with any password.
+3. Write a small unlock script that I run myself in a separate terminal window. It logs in to that account and unlocks it with a hidden password prompt, then saves only the session key to a file in my home folder that only my user can read.
+4. Write a helper command that takes an item name, an environment variable name and a command, and runs that command with the item's password in that variable without ever printing it. If the vault is locked, it should say so and tell me to run the unlock script.
+5. Add short instructions to ~/.claude/CLAUDE.md so every future Claude session knows to use this helper for secrets, never prints them, and asks me to add any secret it needs to the Claude vault.
+6. Test it with the "test" item and show me only the number of characters in the password.</pre></div>
+  <div class="note"><strong>Using it later:</strong> when Claude says it needs, say, a Cloudflare token, add it to the Claude vault in the Bitwarden app or website under the name Claude suggests, then tell Claude it's there. If the vault has locked itself, run the unlock script again.</div>
+</section>
+
+<section class="step" id="remote">
+  <div class="num" style="background:var(--blu)">5</div>
+  <span class="tag">Paste into Claude</span>
+  <h2>Build from your phone, anywhere</h2>
+  <p><a href="https://tailscale.com">Tailscale</a> puts your computer and your phone on a private network of your own, so you can connect to the computer from anywhere without opening it up to the internet. SSH is how you connect, and once you're in you just type <code>claude</code> like you would at home. This works from another laptop too.</p>
+  <div class="code prompt"><pre>Set me up so I can connect to this computer from my phone or another computer, from anywhere, and keep working with you there. Use Tailscale and SSH, and walk me through the parts only I can do, one at a time, waiting for me after each.
+
+1. Install Tailscale on this computer from tailscale.com/download (on a Mac use the Standalone app, not the App Store one) and have me log in when you're ready.
+2. Turn on an SSH server that only I can log in to. On a Mac that means Remote Login in System Settings, on Windows the built-in OpenSSH Server, and on Linux Tailscale SSH.
+3. Install tmux (on Windows, find the closest equivalent) so my session keeps running if my phone loses signal.
+4. Stop the computer from going to sleep while it's plugged in, so I can always reach it.
+5. Tell me which apps to install on my phone: the Tailscale app, logged in to the same account, and Termius for SSH. Help me make an SSH key in Termius and add it to this computer so I don't need a password to connect. Give me the exact host name and username to type in.
+6. Save a short cheat sheet to my home folder as remote-cheatsheet.txt with how to connect and the commands to type once I'm in (start or reattach to tmux, then go to my builds folder and run claude).
+
+When everything is set up, wait while I connect from my phone and tell you it worked.</pre></div>
+  <div class="note"><strong>Only want to chat from your phone?</strong> There's a simpler way for that. Inside Claude, type <code>/remote-control</code>, then open the Claude app on your phone and tap <em>Code</em> to keep talking to that same session. The SSH setup is for when you want the full computer from anywhere.</div>
+</section>
+
+<section class="community" id="community">
+  <h2>Stuck? Ask the group.</h2>
+  <p>Everybody gets stuck sometimes, and that's what the Telegram group is for. Post a screenshot, the prompt you pasted and what Claude answered, and someone will help you out. It's also the place to show off what you built.</p>
+  <a class="btn" href="https://t.me/everybodycanbuild">Join t.me/everybodycanbuild</a>
+</section>
+
+<footer>Made by <a href="https://borodutch.com">Nikita Kolmogorov</a> for friends and family who want to build. Not affiliated with Anthropic.</footer>
+</main>
+<script>
+document.querySelectorAll('.code').forEach(c=>{const b=document.createElement('button');b.className='copy';b.textContent='Copy';b.onclick=()=>navigator.clipboard.writeText(c.querySelector('pre').innerText).then(()=>{b.textContent='Copied!';b.classList.add('done');setTimeout(()=>{b.textContent='Copy';b.classList.remove('done')},1600)});c.append(b)})
+const tabs=document.querySelectorAll('.tabs button'),show=os=>{tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.os==os));document.querySelectorAll('.os').forEach(o=>o.hidden=o.dataset.os!=os)}
+tabs.forEach(t=>t.onclick=()=>show(t.dataset.os))
+if(/Win/.test(navigator.userAgent))show('win')
+</script>
+</body>
+</html>
