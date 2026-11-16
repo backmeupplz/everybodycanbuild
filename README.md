@@ -1,6 +1,6 @@
 # Everybody Can Build
 
-[everybodycanbuild.com](https://everybodycanbuild.com) is a beginner guide for friends and family who want to start building with Claude Code and Opus 5.5. Installing Claude Code is the only manual step. Every later step is a prompt you paste into Claude, which then sets up browser use, computer use, a Bitwarden vault for secrets, and Tailscale + SSH for working from a phone. Questions go to the Telegram group [t.me/everybodycanbuild](https://t.me/everybodycanbuild).
+[everybodycanbuild.com](https://everybodycanbuild.com) is a beginner guide for friends and family who want to start building with Claude Code and Opus 5.5. Installing Claude Code is the only manual step. After a few settings commands (Opus 5.5 on high effort, Fable as advisor, auto mode), every step is a prompt you paste into Claude, which then sets up browser use, computer use, a local Vaultwarden vault for secrets, Tailscale + SSH for working from a phone, and our building rules in its memory. Questions go to the Telegram group [t.me/everybodycanbuild](https://t.me/everybodycanbuild).
 
 ## How it works
 
