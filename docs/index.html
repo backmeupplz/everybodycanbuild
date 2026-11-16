@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Everybody Can Build: start building things with AI</title>
-<meta name="description" content="A friendly step-by-step guide to building with Claude Code and Opus 5.5. Install it once by hand, then copy prompts that let Claude set up browser use, computer use, safe passwords and phone access for you.">
+<meta name="description" content="A friendly four-step guide to building anything with Claude Code and Opus 5.5: join the Telegram group, let Claude set itself up on your computer, collect ten ideas, and build one of them.">
 <link rel="canonical" href="https://everybodycanbuild.com/">
 <meta name="theme-color" content="#fff6e6">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="Everybody Can Build">
 <meta property="og:url" content="https://everybodycanbuild.com/">
 <meta property="og:title" content="Everybody Can Build">
-<meta property="og:description" content="You don't need to be a programmer to build things anymore. Install Claude Code, paste a few prompts, and join our Telegram group when you get stuck.">
+<meta property="og:description" content="You don't need to be a programmer to build websites, apps or gadgets anymore. Join our Telegram group, let Claude set itself up, collect ten ideas and build one.">
 <meta property="og:image" content="https://everybodycanbuild.com/og.png?v=1">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Everybody Can Build: colorful toy blocks stacked into a tower next to the words Everybody can build">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Everybody Can Build">
-<meta name="twitter:description" content="You don't need to be a programmer to build things anymore. Install Claude Code, paste a few prompts, and join our Telegram group when you get stuck.">
+<meta name="twitter:description" content="You don't need to be a programmer to build websites, apps or gadgets anymore. Join our Telegram group, let Claude set itself up, collect ten ideas and build one.">
 <meta name="twitter:image" content="https://everybodycanbuild.com/og.png?v=1">
 <meta name="twitter:image:alt" content="Everybody Can Build: colorful toy blocks stacked into a tower next to the words Everybody can build">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,9 +55,13 @@ h1 span{display:inline-block;padding:0 .12em;border-radius:.12em;background:var(
 .needs h2{margin:0 0 6px;font-size:1.3rem}
 .needs ul{margin:0;padding-left:22px}
 .step{position:relative;margin:56px 0 0;padding-left:72px}
+.step .step{margin-top:44px}
 .num{position:absolute;left:0;top:0;width:52px;height:52px;border:3px solid var(--line);border-radius:12px;display:grid;place-items:center;font-size:1.6rem;font-weight:800;color:#1d1a16;box-shadow:3px 3px 0 var(--shadow)}
+.num.s{font-size:1.15rem}
+.step .step{padding-left:0}.step .step .num{left:-72px}
 @media (max-width:600px){.step{padding-left:0}.num{position:static;margin-bottom:12px}}
-.step h2{font-size:clamp(1.6rem,5vw,2.1rem);line-height:1.1;margin:0 0 10px;letter-spacing:-.01em}
+.step h2{font-size:clamp(1.8rem,6vw,2.4rem);line-height:1.1;margin:0 0 10px;letter-spacing:-.01em}
+.step h3{font-size:clamp(1.4rem,4.5vw,1.8rem);line-height:1.15;margin:0 0 10px}
 .tag{display:inline-block;font:700 .75rem/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:6px 9px;border-radius:8px;border:2px solid var(--line);margin-bottom:12px;background:var(--card)}
 .tabs{display:flex;gap:8px;margin:14px 0 0}
 .tabs button{font:700 .95rem system-ui,sans-serif;padding:8px 14px;border:3px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:var(--card);color:var(--ink);cursor:pointer}
@@ -78,11 +82,18 @@ ol li,ul li{margin:6px 0}
 .ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0}
 .idea{background:var(--card);border:3px solid var(--line);border-radius:14px;padding:14px 16px;font-size:.98rem;box-shadow:3px 3px 0 var(--shadow)}
 .idea b{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin-bottom:4px}
-.community{margin:72px 0 0;background:var(--blu);color:#fff;border:3px solid var(--line);border-radius:22px;padding:30px 26px;box-shadow:8px 8px 0 var(--shadow)}
-.community h2{font-size:clamp(1.8rem,6vw,2.6rem);line-height:1;margin:0 0 12px}
-.community p{margin:0 0 20px;font-size:1.1rem}
-.community .btn{background:var(--yel);color:#1d1a16}
-footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:48px}
+.pad{background:var(--card);border:3px solid var(--line);border-radius:14px;padding:16px 20px 10px;box-shadow:5px 5px 0 var(--shadow);margin:18px 0}
+.pad b{display:block;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:1.15rem;margin-bottom:4px}
+.pad ol{margin:0;padding-left:30px}
+.pad li{border-bottom:2px dashed color-mix(in srgb,var(--mut) 40%,transparent);margin:0;padding:6px 0;min-height:2.3em}
+.pad li:last-child{border:0}
+.anything{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;padding:0;list-style:none}
+.anything li{margin:0;border:3px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;color:#1d1a16}
+.tg{margin:24px 0 0;background:var(--blu);color:#fff;border:3px solid var(--line);border-radius:22px;padding:26px 24px;box-shadow:8px 8px 0 var(--shadow)}
+.tg h3{font-size:clamp(1.5rem,5vw,2rem);line-height:1.1;margin:0 0 10px}
+.tg p{margin:0 0 18px}
+.tg .btn{background:var(--yel);color:#1d1a16}
+footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:64px}
 </style>
 </head>
 <body>
@@ -90,10 +101,10 @@ footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:48px}
 <header>
   <div>
     <h1>Everybody can <span>build</span></h1>
-    <p class="lede">You don't need to be a programmer to make apps, websites, scripts and little helpers anymore. You need an idea and <strong>Claude</strong>. This page gets you from zero to building in one afternoon, and our Telegram group is there whenever you get stuck.</p>
+    <p class="lede">You don't need to be a programmer to make websites, apps or gadgets anymore, and you don't even need an idea yet. All it takes is the wish to build something, and <strong>Claude</strong> does the heavy lifting. This page walks you through four steps, and our Telegram group helps you through every one of them.</p>
     <div class="ctas">
-      <a class="btn" href="#install">Start with step 1</a>
-      <a class="btn alt" href="https://t.me/everybodycanbuild">Join the Telegram group</a>
+      <a class="btn" href="https://t.me/everybodycanbuild">Join the Telegram group</a>
+      <a class="btn alt" href="#setup">Skip to the setup</a>
     </div>
   </div>
   <svg class="tower" viewBox="0 0 150 220" aria-hidden="true">
@@ -108,76 +119,75 @@ footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:48px}
 <section class="needs">
   <h2>What you need</h2>
   <ul>
-    <li>A Mac or a Windows PC. A Mac gets the most out of this, because Claude can only take over the whole screen on a Mac.</li>
+    <li>Any computer running Windows, macOS or Linux. It doesn't have to be fancy, because a cheap $300 laptop with <a href="https://omarchy.org">Omarchy</a> installed on it is plenty to build with.</li>
     <li>A paid Claude plan, Pro or Max, from <a href="https://claude.com/pricing">claude.com/pricing</a>. Pro is enough to start, and Max is worth it once you build every day.</li>
-    <li>Google Chrome, for the step where Claude learns to use your browser.</li>
+    <li>The <a href="https://www.chromium.org/getting-involved/download-chromium/">Chromium</a> browser, for the part where Claude learns to use your browser.</li>
   </ul>
 </section>
 
-<section class="step" id="install">
-  <div class="num" style="background:var(--red)">1</div>
-  <span class="tag">The only step you do by hand</span>
-  <h2>Install Claude Code</h2>
-  <p>Claude Code is Claude living in a terminal on your computer, where it can create files, run programs and set things up for you. Open a terminal: on a Mac press <kbd>⌘</kbd>&nbsp;<kbd>Space</kbd> and type <em>Terminal</em>, and on Windows press <kbd>Start</kbd> and type <em>PowerShell</em> (not Command Prompt). Then paste this line and press <kbd>Enter</kbd>.</p>
-  <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" data-os="mac">Mac</button>
-    <button role="tab" aria-selected="false" data-os="win">Windows</button>
-  </div>
-  <div class="os" data-os="mac"><div class="code"><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div></div>
-  <div class="os" data-os="win" hidden><div class="code"><pre>irm https://claude.ai/install.ps1 | iex</pre></div></div>
-  <p>When it finishes, close the terminal window and open a fresh one so it notices the new program. Make a folder for your projects and start Claude inside it:</p>
-  <div class="code"><pre>mkdir builds
-cd builds
-claude</pre></div>
-  <p>Claude opens your browser so you can log in with your Claude account, and when it asks whether you trust the folder, say yes. Back in the terminal, type <code>/model</code>, pick <strong>Opus 5.5</strong> with the arrow keys and press <kbd>Enter</kbd>, because it is the smartest model and the rest of this guide counts on it. If your Mac ever pops up a window offering to install developer tools, click Install and let it finish.</p>
-  <div class="note"><strong>How to talk to Claude:</strong> type or paste what you want and press <kbd>Enter</kbd>. Claude asks before doing anything risky, and you can stop it at any moment with <kbd>Esc</kbd>. Next time you want to build, open a terminal and type <code>cd builds</code> and then <code>claude</code>, or <code>claude --continue</code> to pick up your last conversation where you left it.</div>
-  <p>From here on you don't type any commands. Each step below is a prompt that you copy and paste into Claude, and Claude does the setup itself. Whenever it needs your hands for a login or a switch in Settings, it stops and tells you exactly what to click. Claude can't type your computer's password for you, so when something needs it, Claude gives you a line to paste into a second terminal window instead, which is normal.</p>
+<section class="step" id="telegram">
+  <div class="num" style="background:var(--blu);color:#fff">1</div>
+  <h2>Join the Telegram group</h2>
+  <p>Do this first, before you install anything. Everybody gets stuck at some point, whether it's a setup step that doesn't go as planned or a build that won't do what you want, and the group is where you ask. Post a screenshot, what you pasted and what Claude answered, and someone will help you out.</p>
+  <a class="btn" href="https://t.me/everybodycanbuild">Join t.me/everybodycanbuild</a>
 </section>
 
-<section class="step" id="browser">
-  <div class="num" style="background:var(--yel)">2</div>
-  <span class="tag">Paste into Claude</span>
-  <h2>Let Claude use your browser</h2>
-  <p>With browser use, Claude can open websites in your Chrome, click around, fill in forms and check that the things it builds actually work. It uses the browser you're already logged into, so it can help with your real accounts.</p>
-  <div class="code prompt"><pre>Set yourself up to control my Chrome browser with the official Claude in Chrome extension. Read https://code.claude.com/docs/en/chrome first so you follow the current steps.
+<section class="step" id="setup">
+  <div class="num" style="background:var(--red)">2</div>
+  <h2>Set up Claude on your computer</h2>
+  <p>Installing Claude Code is the only part you do by hand. After that, every part below is a prompt that you copy and paste into Claude, and Claude sets everything up itself. Whenever it needs your hands for a login or a switch in Settings, it stops and tells you exactly what to click.</p>
+
+  <section class="step" id="install">
+    <div class="num s" style="background:var(--red)">2.1</div>
+    <span class="tag">The only part you do by hand</span>
+    <h3>Install Claude Code</h3>
+    <p>Claude Code is Claude living in a terminal on your computer, where it can create files, run programs and set things up for you. Open a terminal: on a Mac press <kbd>⌘</kbd>&nbsp;<kbd>Space</kbd> and type <em>Terminal</em>, on Windows press <kbd>Start</kbd> and type <em>PowerShell</em> (not Command Prompt), and on Omarchy press <kbd>Super</kbd>&nbsp;<kbd>Return</kbd>. Then paste this line and press <kbd>Enter</kbd>.</p>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-os="unix">Mac or Linux</button>
+      <button role="tab" aria-selected="false" data-os="win">Windows</button>
+    </div>
+    <div class="os" data-os="unix"><div class="code"><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div></div>
+    <div class="os" data-os="win" hidden><div class="code"><pre>irm https://claude.ai/install.ps1 | iex</pre></div></div>
+    <p>When it finishes, close the terminal window and open a fresh one so it notices the new program. Make a folder for your projects and start Claude inside it:</p>
+    <div class="code"><pre>mkdir builds
+cd builds
+claude</pre></div>
+    <p>Claude opens your browser so you can log in with your Claude account, and when it asks whether you trust the folder, say yes. Back in the terminal, type <code>/model</code>, pick <strong>Opus 5.5</strong> with the arrow keys and press <kbd>Enter</kbd>, because it is the smartest model and the rest of this guide counts on it. If your Mac ever pops up a window offering to install developer tools, click Install and let it finish.</p>
+    <div class="note"><strong>How to talk to Claude:</strong> type or paste what you want and press <kbd>Enter</kbd>. Claude asks before doing anything risky, and you can stop it at any moment with <kbd>Esc</kbd>. Next time you want to build, open a terminal and type <code>cd builds</code> and then <code>claude</code>, or <code>claude --continue</code> to pick up your last conversation where you left it.</div>
+    <p>Claude can't type your computer's password for you, so when something in the next parts needs it, Claude gives you a line to paste into a second terminal window instead, which is normal.</p>
+  </section>
+
+  <section class="step" id="browser">
+    <div class="num s" style="background:var(--yel)">2.2</div>
+    <span class="tag">Paste into Claude</span>
+    <h3>Let Claude use your browser</h3>
+    <p>With browser use, Claude can open websites in your Chromium, click around, fill in forms and check that the things it builds actually work. It uses the browser you're already logged into, so it can help with your real accounts.</p>
+    <div class="code prompt"><pre>Set yourself up to control my Chromium browser with the official Claude in Chrome extension, which works in Chromium too. Read https://code.claude.com/docs/en/chrome first so you follow the current steps. If Claude Code doesn't find Chromium on its own, set up the connection to it yourself.
 
 Walk me through the parts only I can do, one at a time, and wait for me after each: installing the extension from the Chrome Web Store, signing in to it with the same Claude account I use here, and anything I need to type or restart in this terminal. If you need to be restarted, give me the exact line to type and remind me that "claude --continue" brings this conversation back. Turn browser use on by default so I don't have to do this again.
 
 When it works, prove it: open a new tab, go to wikipedia.org, and tell me today's featured article.</pre></div>
-</section>
+  </section>
 
-<section class="step" id="computer">
-  <div class="num" style="background:var(--grn)">3</div>
-  <span class="tag">Paste into Claude · Mac only</span>
-  <h2>Let Claude use your whole computer</h2>
-  <p>Computer use lets Claude see your screen and use any app with the mouse and keyboard, like Numbers, Photos or System Settings. It is a Mac feature in Claude Code for now. On Windows, skip ahead to the examples below, because browser use covers most of what you'll need.</p>
-  <div class="code prompt"><pre>Turn on your computer-use ability on this Mac. Read https://code.claude.com/docs/en/computer-use first so you follow the current steps.
+  <section class="step" id="computer">
+    <div class="num s" style="background:var(--grn)">2.3</div>
+    <span class="tag">Paste into Claude · Mac only</span>
+    <h3>Let Claude use your whole computer</h3>
+    <p>Computer use lets Claude see your screen and use any app with the mouse and keyboard, like Numbers, Photos or System Settings. Claude Code only supports it on a Mac for now, so on Windows and Linux skip ahead to the next part, because browser use covers most of what you'll need.</p>
+    <div class="code prompt"><pre>Turn on your computer-use ability on this Mac. Read https://code.claude.com/docs/en/computer-use first so you follow the current steps.
 
 If my plan or Claude Code version doesn't support it, tell me what to change and stop there. Otherwise tell me exactly what I have to do myself, one step at a time, and wait for me after each: the menu I need to open in this terminal, and the Accessibility and Screen Recording switches in macOS System Settings. macOS may make me quit and reopen the terminal, so before that, tell me how to get back to this conversation (cd builds, then claude --continue).
 
 When it works, prove it: open Calculator, work out 1234 × 5678 by clicking its buttons, and read me the answer from the screen.</pre></div>
-  <div class="note"><strong>While Claude drives:</strong> it sees whatever is on your screen, so close your banking and password windows first. You approve each app it wants to use, and <kbd>Esc</kbd> takes control back right away.</div>
-</section>
+    <div class="note"><strong>While Claude drives:</strong> it sees whatever is on your screen, so close your banking and password windows first. You approve each app it wants to use, and <kbd>Esc</kbd> takes control back right away.</div>
+  </section>
 
-<section class="step" id="prompting">
-  <div class="num" style="background:var(--red)">★</div>
-  <span class="tag">Try these</span>
-  <h2>How to ask Claude for things</h2>
-  <p>Describe the result you want, say what "done" looks like, and tell Claude what it must ask you about before doing it. Mention your browser or computer use when you want Claude to click around for real, and ask it to check its own work, because it is good at that.</p>
-  <div class="ideas">
-    <div class="idea"><b>Build</b>Make me a one-page website for my bakery with our hours and menu, then open it in my Chrome and fix anything that looks off on a phone-sized window.</div>
-    <div class="idea"><b>Browser</b>Use my Chrome to find three flights to Lisbon for the second week of March under $500. Put them in a table, and don't book anything.</div>
-    <div class="idea"><b>Files</b>Look through my Downloads folder, sort everything into folders by type, and show me the plan before you move a single file.</div>
-    <div class="idea"><b>Computer use</b>Use computer use to open Numbers and turn the receipts in my Desktop's receipts folder into a monthly budget spreadsheet with a chart.</div>
-  </div>
-</section>
-
-<section class="step" id="passwords">
-  <div class="num" style="background:var(--pur)">4</div>
-  <span class="tag">Paste into Claude</span>
-  <h2>Give Claude passwords safely</h2>
-  <p>Sooner or later Claude will need a password or an API key, for example to publish your website or log in to a service. Pasting those into the chat is a bad habit, because the chat is saved and you lose track of where your secrets went. Instead, Claude gets its own small <a href="https://bitwarden.com">Bitwarden</a> vault, separate from your personal passwords, and fetches secrets from it straight into the programs that need them.</p>
-  <div class="code prompt"><pre>Set up safe secret storage for yourself using the Bitwarden CLI. Follow these rules the whole time: never ask me to type a password into this chat, and never print a secret's value, in your messages or in command output.
+  <section class="step" id="passwords">
+    <div class="num s" style="background:var(--pur)">2.4</div>
+    <span class="tag">Paste into Claude</span>
+    <h3>Give Claude passwords safely</h3>
+    <p>Sooner or later Claude will need a password or an API key, for example to publish your website or log in to a service. Pasting those into the chat is a bad habit, because the chat is saved and you lose track of where your secrets went. Instead, Claude gets its own small <a href="https://bitwarden.com">Bitwarden</a> vault, separate from your personal passwords, and fetches secrets from it straight into the programs that need them.</p>
+    <div class="code prompt"><pre>Set up safe secret storage for yourself using the Bitwarden CLI. Follow these rules the whole time: never ask me to type a password into this chat, and never print a secret's value, in your messages or in command output.
 
 1. Install the official Bitwarden CLI ("bw") for my operating system. If that needs my computer's password, give me the exact line to paste into a second terminal window.
 2. Have me create a separate free Bitwarden account at bitwarden.com just for you (an email alias like name+claude@gmail.com works), so you can never see my personal vault. Remind me to pick a master password I don't use anywhere else and write it on paper, because Bitwarden can't recover it. Then have me add an item named "test" with a dummy password like hello123 in the Bitwarden web vault.
@@ -185,15 +195,15 @@ When it works, prove it: open Calculator, work out 1234 × 5678 by clicking its 
 4. Write a helper command that takes an item name, an environment variable name and a command, and runs that command with the item's password in that variable, without ever printing it or putting it on a command line. If the vault is locked, it should say so and tell me to run the unlock script.
 5. Add short instructions to the CLAUDE.md file in my home folder's .claude directory so every future Claude session knows to use this helper for secrets, never prints them, and asks me to add any secret it needs to the Claude vault.
 6. Test it with the "test" item and show me only the number of characters in the password.</pre></div>
-  <div class="note"><strong>Using it later:</strong> when Claude says it needs, say, a Cloudflare token, add it to the Claude vault in the Bitwarden app or website under the name Claude suggests, then tell Claude it's there. If the vault has locked itself, run the unlock script again. Only put secrets in this vault that you're happy for Claude to use, because keeping them out of the chat doesn't stop Claude from using them.</div>
-</section>
+    <div class="note"><strong>Using it later:</strong> when Claude says it needs, say, a Cloudflare token, add it to the Claude vault in the Bitwarden app or website under the name Claude suggests, then tell Claude it's there. If the vault has locked itself, run the unlock script again. Only put secrets in this vault that you're happy for Claude to use, because keeping them out of the chat doesn't stop Claude from using them.</div>
+  </section>
 
-<section class="step" id="remote">
-  <div class="num" style="background:var(--blu)">5</div>
-  <span class="tag">Paste into Claude</span>
-  <h2>Build from your phone, anywhere</h2>
-  <p><a href="https://tailscale.com">Tailscale</a> puts your computer and your phone on a private network of your own, so you can connect to the computer from anywhere without opening it up to the internet. SSH is how you connect, and once you're in you just type <code>claude</code> like you would at home. This works from another laptop too.</p>
-  <div class="code prompt"><pre>Set me up so I can connect to this computer from my phone or another computer, from anywhere, and keep working with you there. Use Tailscale and SSH, and walk me through the parts only I can do, one at a time, waiting for me after each.
+  <section class="step" id="remote">
+    <div class="num s" style="background:var(--blu);color:#fff">2.5</div>
+    <span class="tag">Paste into Claude</span>
+    <h3>Build from your phone, anywhere</h3>
+    <p><a href="https://tailscale.com">Tailscale</a> puts your computer and your phone on a private network of your own, so you can connect to the computer from anywhere without opening it up to the internet. SSH is how you connect, and once you're in you just type <code>claude</code> like you would at home. This works from another laptop too.</p>
+    <div class="code prompt"><pre>Set me up so I can connect to this computer from my phone or another computer, from anywhere, and keep working with you there. Use Tailscale and SSH, and walk me through the parts only I can do, one at a time, waiting for me after each.
 
 Whenever something needs my computer's password, give me the exact line to paste into a second terminal window, or tell me what to click.
 
@@ -206,18 +216,61 @@ Whenever something needs my computer's password, give me the exact line to paste
 7. Save a short cheat sheet to my home folder as remote-cheatsheet.txt with how to connect and the commands to type once I'm in (start or reattach to tmux, then go to my builds folder and run claude).
 
 When everything is set up, wait while I connect from my phone and tell you it worked.</pre></div>
-  <div class="note"><strong>Only want to chat from your phone?</strong> There's a simpler way for that. Inside Claude, type <code>/remote-control</code>, then open the Claude app on your phone and tap <em>Code</em> to keep talking to that same session. The SSH setup is for when you want the full computer from anywhere.</div>
+    <div class="note"><strong>Only want to chat from your phone?</strong> There's a simpler way for that. Inside Claude, type <code>/remote-control</code>, then open the Claude app on your phone and tap <em>Code</em> to keep talking to that same session. The SSH setup is for when you want the full computer from anywhere.</div>
+  </section>
 </section>
 
-<section class="community" id="community">
-  <h2>Stuck? Ask the group.</h2>
-  <p>Everybody gets stuck sometimes, and that's what the Telegram group is for. Post a screenshot, the prompt you pasted and what Claude answered, and someone will help you out. It's also the place to show off what you built.</p>
-  <a class="btn" href="https://t.me/everybodycanbuild">Join t.me/everybodycanbuild</a>
+<section class="step" id="ideas">
+  <div class="num" style="background:var(--yel)">3</div>
+  <span class="tag">The hardest step</span>
+  <h2>Collect ten ideas</h2>
+  <p>This is the toughest step, and the one most people skip. Ideas rarely show up when you sit down and try to think of one, but they hide in the little annoyances of your day: a chore you repeat every week, a paper list on the fridge, an app that almost does what you want, a question you keep googling.</p>
+  <p>So start looking out for those pain points. Whenever you notice one, pull out the notes app on your phone and write the idea down right away, no matter how ambitious or silly it sounds, because the silly ones are often the best to build. Keep going until your list has ten ideas, and only then pick the one you're most excited about.</p>
+  <div class="pad" aria-label="An example idea list">
+    <b>My ten ideas</b>
+    <ol>
+      <li>A bot that tells the family group whose turn it is to cook</li>
+      <li>A website for my uncle's car repair shop with online booking</li>
+      <li>A gadget that texts me when the mailbox opens</li>
+      <li>A game that helps my kid practice multiplication</li>
+      <li>Something that sorts my receipts for taxes</li>
+      <li></li><li></li><li></li><li></li><li></li>
+    </ol>
+  </div>
+</section>
+
+<section class="step" id="build">
+  <div class="num" style="background:var(--grn)">4</div>
+  <h2>Build it</h2>
+  <p>Pick one idea from your list and tell Claude about it the way you'd tell a friend: what it should do, who it's for and what "done" looks like. You can build literally anything this way.</p>
+  <ul class="anything">
+    <li style="background:var(--yel)">Websites</li>
+    <li style="background:var(--grn)">Android apps</li>
+    <li style="background:#7fb2ff">iPhone apps</li>
+    <li style="background:var(--red)">Telegram bots</li>
+    <li style="background:#c6a8ff">Games</li>
+    <li style="background:var(--yel)">Desktop programs</li>
+    <li style="background:var(--grn)">Spreadsheets that do the boring work</li>
+    <li style="background:#7fb2ff">Hardware gadgets</li>
+  </ul>
+  <p>Tell Claude what it must ask you about before doing it, mention your browser or computer use when you want it to click around for real, and ask it to check its own work, because it is good at that. Here are a few prompts to get you going:</p>
+  <div class="ideas">
+    <div class="idea"><b>Website</b>Make me a one-page website for my bakery with our hours and menu, then open it in my browser and fix anything that looks off on a phone-sized window.</div>
+    <div class="idea"><b>Phone app</b>Build an Android app that keeps track of whose turn it is to do the dishes, and walk me through installing it on my phone.</div>
+    <div class="idea"><b>Hardware</b>I have an ESP32 board and a soil moisture sensor. Tell me how to wire them, write the code, and make it message me on Telegram when my plant needs water.</div>
+    <div class="idea"><b>Browser</b>Use my browser to find three flights to Lisbon for the second week of March under $500. Put them in a table, and don't book anything.</div>
+  </div>
+  <div class="tg">
+    <h3>This is where the group really helps</h3>
+    <p>Your first build will get stuck somewhere, everybody's does, and that's exactly when the Telegram group earns its place. We're in there all the time helping people get unstuck, so post what you're building and where it went wrong, and come back to show it off when it works.</p>
+    <a class="btn" href="https://t.me/everybodycanbuild">Open the Telegram group</a>
+  </div>
 </section>
 
 <footer>Made by <a href="https://borodutch.com">Nikita Kolmogorov</a> for friends and family who want to build. Not affiliated with Anthropic.</footer>
 </main>
 <script>
+document.querySelectorAll('a[href^=http]').forEach(a=>{a.target='_blank';a.rel='noopener'})
 document.querySelectorAll('.code').forEach(c=>{const b=document.createElement('button');b.className='copy';b.textContent='Copy';b.onclick=()=>navigator.clipboard.writeText(c.querySelector('pre').innerText).then(()=>{b.textContent='Copied!';b.classList.add('done');setTimeout(()=>{b.textContent='Copy';b.classList.remove('done')},1600)});c.append(b)})
 const tabs=document.querySelectorAll('.tabs button'),show=os=>{tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.os==os));document.querySelectorAll('.os').forEach(o=>o.hidden=o.dataset.os!=os)}
 tabs.forEach(t=>t.onclick=()=>show(t.dataset.os))
