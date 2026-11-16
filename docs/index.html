@@ -150,20 +150,25 @@ When it works, prove it: open a new tab, go to wikipedia.org, and tell me today'
   <div class="num" style="background:var(--grn)">3</div>
   <span class="tag">Paste into Claude · Mac only</span>
   <h2>Let Claude use your whole computer</h2>
-  <p>Computer use lets Claude see your screen and use any app with the mouse and keyboard, like Numbers, Photos or System Settings. It is a Mac feature in Claude Code for now. On Windows, skip this step: browser use covers most of what you'll need.</p>
+  <p>Computer use lets Claude see your screen and use any app with the mouse and keyboard, like Numbers, Photos or System Settings. It is a Mac feature in Claude Code for now. On Windows, skip ahead to the examples below, because browser use covers most of what you'll need.</p>
   <div class="code prompt"><pre>Turn on your computer-use ability on this Mac. Read https://code.claude.com/docs/en/computer-use first so you follow the current steps.
 
 If my plan or Claude Code version doesn't support it, tell me what to change and stop there. Otherwise tell me exactly what I have to do myself, one step at a time, and wait for me after each: the menu I need to open in this terminal, and the Accessibility and Screen Recording switches in macOS System Settings. macOS may make me quit and reopen the terminal, so before that, tell me how to get back to this conversation (cd builds, then claude --continue).
 
 When it works, prove it: open Calculator, work out 1234 × 5678 by clicking its buttons, and read me the answer from the screen.</pre></div>
   <div class="note"><strong>While Claude drives:</strong> it sees whatever is on your screen, so close your banking and password windows first. You approve each app it wants to use, and <kbd>Esc</kbd> takes control back right away.</div>
-  <h3>What to ask for once it works</h3>
-  <p>Describe the result you want, say what "done" looks like, and tell Claude what it must ask you about first. Claude is good at checking its own work, so ask it to.</p>
+</section>
+
+<section class="step" id="prompting">
+  <div class="num" style="background:var(--red)">★</div>
+  <span class="tag">Try these</span>
+  <h2>How to ask Claude for things</h2>
+  <p>Describe the result you want, say what "done" looks like, and tell Claude what it must ask you about before doing it. Mention your browser or computer use when you want Claude to click around for real, and ask it to check its own work, because it is good at that.</p>
   <div class="ideas">
-    <div class="idea"><b>Build</b>Make me a one-page website for my bakery with our hours and menu, open it in Chrome, and fix anything that looks off on a phone-sized window.</div>
-    <div class="idea"><b>Browse</b>Find three flights to Lisbon for the second week of March under $500. Put them in a table, and don't book anything.</div>
-    <div class="idea"><b>Tidy up</b>Look through my Downloads folder, sort everything into folders by type, and show me the plan before you move a single file.</div>
-    <div class="idea"><b>Use any app</b>Open Numbers and turn the receipts in ~/Desktop/receipts into a monthly budget spreadsheet with a chart.</div>
+    <div class="idea"><b>Build</b>Make me a one-page website for my bakery with our hours and menu, then open it in my Chrome and fix anything that looks off on a phone-sized window.</div>
+    <div class="idea"><b>Browser</b>Use my Chrome to find three flights to Lisbon for the second week of March under $500. Put them in a table, and don't book anything.</div>
+    <div class="idea"><b>Files</b>Look through my Downloads folder, sort everything into folders by type, and show me the plan before you move a single file.</div>
+    <div class="idea"><b>Computer use</b>Use computer use to open Numbers and turn the receipts in my Desktop's receipts folder into a monthly budget spreadsheet with a chart.</div>
   </div>
 </section>
 
@@ -196,8 +201,9 @@ Whenever something needs my computer's password, give me the exact line to paste
 2. Turn on an SSH server for my user only. On a Mac that means I switch on Remote Login in System Settings, on Windows the built-in OpenSSH Server, and on Linux Tailscale SSH. Make it accept SSH keys only, never passwords, and if you can, only connections that come through Tailscale.
 3. Install tmux so my session keeps running if my phone loses signal. On Windows, explain what happens when the connection drops and set up the simplest workaround.
 4. Stop the computer from going to sleep while it's plugged in, so I can always reach it. If it's a laptop, tell me the lid has to stay open, and tell me whether disk encryption means someone has to log in at the computer after a restart.
-5. Tell me which apps to install on my phone: the Tailscale app, logged in to the same account, and Termius for SSH. Help me make an SSH key in Termius and send you only its public key, then add that key to this computer. Give me the exact host name and username to type in.
-6. Save a short cheat sheet to my home folder as remote-cheatsheet.txt with how to connect and the commands to type once I'm in (start or reattach to tmux, then go to my builds folder and run claude).
+5. Tell me which apps to install on my phone: the Tailscale app, logged in to the same account, and a free SSH app such as Termius. Help me make an SSH key in that app and send you only its public key, then add that key to this computer. Give me the exact host name and username to type in.
+6. SSH into this computer yourself the same way my phone will, and check that tmux and claude both start there and that claude is still logged in. Fix whatever doesn't work, such as programs missing from the path in SSH sessions.
+7. Save a short cheat sheet to my home folder as remote-cheatsheet.txt with how to connect and the commands to type once I'm in (start or reattach to tmux, then go to my builds folder and run claude).
 
 When everything is set up, wait while I connect from my phone and tell you it worked.</pre></div>
   <div class="note"><strong>Only want to chat from your phone?</strong> There's a simpler way for that. Inside Claude, type <code>/remote-control</code>, then open the Claude app on your phone and tap <em>Code</em> to keep talking to that same session. The SSH setup is for when you want the full computer from anywhere.</div>
