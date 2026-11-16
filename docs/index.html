@@ -92,6 +92,8 @@ ol li,ul li{margin:6px 0}
 .tg{margin:24px 0 0;background:var(--blu);color:#fff;border:3px solid var(--line);border-radius:22px;padding:26px 24px;box-shadow:8px 8px 0 var(--shadow)}
 .tg h3{font-size:clamp(1.5rem,5vw,2rem);line-height:1.1;margin:0 0 10px}
 .tg p{margin:0 0 18px}
+.tg ol{margin:0 0 20px;padding-left:22px}
+.tg li{margin:10px 0}
 .tg .btn{background:var(--yel);color:#1d1a16}
 footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:64px}
 </style>
@@ -227,8 +229,25 @@ When it works, prove it: open the calculator app, work out 1234 × 5678 by click
     <div class="note"><strong>Using it later:</strong> when Claude says it needs, say, a Cloudflare token, open your bookmarked vault page, add the token under the name Claude suggests, and tell Claude it's there. If the vault has locked itself, run the unlock script again. Only put secrets in this vault that you're happy for Claude to use, because keeping them out of the chat doesn't stop Claude from using them.</div>
   </section>
 
+  <section class="step" id="tmux">
+    <div class="num s" style="background:var(--yel)">2.8</div>
+    <span class="tag">Paste into Claude</span>
+    <h3>Give Claude a home in tmux</h3>
+    <p>tmux keeps your Claude sessions running in the background, so closing the terminal window or losing the connection on your phone doesn't stop anything. You get tabs for several Claude sessions at once, and a tab turns yellow when the Claude inside it is waiting for you.</p>
+    <div class="code prompt"><pre>Install tmux and set it up for working with you all day. If this computer can't run tmux natively, use the closest setup that works here. Whenever something needs my computer's password, give me the exact line to paste into a second terminal window.
+
+1. Typing plain "tmux" attaches to one persistent session called "main", creating it if it doesn't exist yet.
+2. The mouse works: the wheel scrolls back through a long history (50,000 lines), and dragging or double-clicking copies to my own clipboard, even when I'm connected over SSH from another device. Double-clicking a link copies the whole link without trailing punctuation.
+3. Keys like Shift+Enter reach you inside tmux, so multi-line prompts still work.
+4. Tabs are numbered from 1 with no gaps. Ctrl+Shift+T opens a new tab in the current folder, Ctrl+Shift+W closes one after asking, Ctrl+Shift+Left and Right switch tabs, and Ctrl+Shift+D detaches while everything keeps running.
+5. Each tab is named after what the Claude session in it is working on, and the active tab is highlighted.
+6. A tab turns yellow when the Claude session in it has finished or needs my input and I'm not looking at that tab, and goes back to normal when I switch to it or reply. Use Claude Code hooks in my user settings for this.
+
+Write a short explanation of each setting as a comment in the config. Then open a tmux session yourself to check that it all loads without errors, and show me a cheat sheet of the shortcuts.</pre></div>
+  </section>
+
   <section class="step" id="remote">
-    <div class="num s" style="background:var(--blu);color:#fff">2.8</div>
+    <div class="num s" style="background:var(--blu);color:#fff">2.9</div>
     <span class="tag">Paste into Claude</span>
     <h3>Build from your phone, anywhere</h3>
     <p><a href="https://tailscale.com">Tailscale</a> puts your computer and your phone on a private network of your own, so you can connect to the computer from anywhere without opening it up to the internet. SSH is how you connect, and once you're in you just type <code>claude</code> like you would at home. This works from another laptop too.</p>
@@ -238,19 +257,20 @@ Whenever something needs my computer's password, give me the exact line to paste
 
 1. Install Tailscale on this computer from tailscale.com/download (on a Mac use the Standalone app, not the App Store one) and have me log in when you're ready.
 2. Turn on an SSH server for my user only. On a Mac that means I switch on Remote Login in System Settings, on Windows the built-in OpenSSH Server, and on Linux Tailscale SSH. Make it accept SSH keys only, never passwords, and if you can, only connections that come through Tailscale.
-3. Install tmux so my session keeps running if my phone loses signal. On Windows, explain what happens when the connection drops and set up the simplest workaround.
+3. Make every SSH login drop me straight into my tmux "main" session, so my work is waiting for me and keeps running if my phone loses signal. If tmux isn't set up yet, set it up first.
 4. Stop the computer from going to sleep while it's plugged in, so I can always reach it. If it's a laptop, tell me the lid has to stay open, and tell me whether disk encryption means someone has to log in at the computer after a restart.
-5. Tell me which apps to install on my phone: the Tailscale app, logged in to the same account, and a free SSH app such as Termius. Help me make an SSH key in that app and send you only its public key, then add that key to this computer. Give me the exact host name and username to type in.
-6. SSH into this computer yourself the same way my phone will, and check that tmux and claude both start there and that claude is still logged in. Fix whatever doesn't work, such as programs missing from the path in SSH sessions.
-7. If I have a Vaultwarden vault on this computer, make its web page reachable from my phone through Tailscale only, over HTTPS, so I can add passwords from anywhere.
-8. Save a short cheat sheet to my home folder as remote-cheatsheet.txt with how to connect and the commands to type once I'm in (start or reattach to tmux, then run claude).
+5. Tell me which apps to install on my phone: the Tailscale app, logged in to the same account, and a free SSH app such as Termius. Help me make an SSH key in that app and send you only its public key, then add that key to this computer. Give me the exact host name and username to type in, and have me save it as a host called "work" so connecting is a single tap.
+6. If I use other computers, give me one command to paste on each of them that installs Tailscale if needed, makes an SSH key, and adds a "work" shortcut, so typing "ssh work" there connects me straight into my tmux session here. Add each computer's public key to this one when I send it to you.
+7. SSH into this computer yourself the same way my phone will, and check that I land in tmux, that claude starts there and that it's still logged in. Fix whatever doesn't work, such as programs missing from the path in SSH sessions.
+8. If I have a Vaultwarden vault on this computer, make its web page reachable from my phone through Tailscale only, over HTTPS, so I can add passwords from anywhere.
+9. Save a short cheat sheet to my home folder as remote-cheatsheet.txt with how to connect from my phone and from other computers, and what to type once I'm in.
 
 When everything is set up, wait while I connect from my phone and tell you it worked.</pre></div>
     <div class="note"><strong>Only want to chat from your phone?</strong> There's a simpler way for that. Inside Claude, type <code>/remote-control</code>, then open the Claude app on your phone and tap <em>Code</em> to keep talking to that same session. The SSH setup is for when you want the full computer from anywhere.</div>
   </section>
 
   <section class="step" id="memory">
-    <div class="num s" style="background:var(--red)">2.9</div>
+    <div class="num s" style="background:var(--red)">2.10</div>
     <span class="tag">Paste into Claude</span>
     <h3>Teach Claude how we build</h3>
     <p>Claude remembers rules you give it across every future session. These are the habits our group builds with: fast websites that look great when shared, cheap servers you own instead of pricey hosted platforms, and backups for anything you can't get back. Claude will ask you to create the accounts it needs, like GitHub, Cloudflare or Hetzner, the first time it needs them, and their keys go into your vault.</p>
@@ -273,14 +293,15 @@ When you've saved them, read the rules back to me as a short list.</pre></div>
   <h2>Collect ten ideas</h2>
   <p>This is the toughest step, and the one most people skip. Ideas rarely show up when you sit down and try to think of one, but they hide in the little annoyances of your day: a chore you repeat every week, a paper list on the fridge, an app that almost does what you want, a question you keep googling.</p>
   <p>So start looking out for those pain points. Whenever you notice one, pull out the notes app on your phone and write the idea down right away, no matter how ambitious or silly it sounds, because the silly ones are often the best to build. Keep going until your list has ten ideas, and only then pick the one you're most excited about.</p>
+  <p>The best ideas are as close to a single-button app as possible: you open it, press one button, and something useful happens. An idea that small is one you can actually finish, and one you'll keep using every day.</p>
   <div class="pad" aria-label="An example idea list">
     <b>My ten ideas</b>
     <ol>
-      <li>A bot that tells the family group whose turn it is to cook</li>
-      <li>A website for my uncle's car repair shop with online booking</li>
+      <li>A button that tells the family group whose turn it is to cook</li>
+      <li>A button that turns a photo of a receipt into a row in my tax spreadsheet</li>
       <li>A gadget that texts me when the mailbox opens</li>
-      <li>A game that helps my kid practice multiplication</li>
-      <li>Something that sorts my receipts for taxes</li>
+      <li>A button that gives my kid the next multiplication question</li>
+      <li>A button that books my usual haircut slot for next month</li>
       <li></li><li></li><li></li><li></li><li></li>
     </ol>
   </div>
@@ -289,7 +310,17 @@ When you've saved them, read the rules back to me as a short list.</pre></div>
 <section class="step" id="build">
   <div class="num" style="background:var(--grn)">4</div>
   <h2>Build it</h2>
-  <p>Pick one idea from your list and tell Claude about it the way you'd tell a friend: what it should do, who it's for and what "done" looks like. You can build literally anything this way.</p>
+  <p>Pick one idea from your list, and build it together with the Telegram group rather than alone. The easiest way to waste a month is to build in silence and only find out at the end that the idea needed a tweak, so we keep each other honest with three habits.</p>
+  <div class="tg">
+    <h3>Build it with the group</h3>
+    <ol>
+      <li><strong>Pitch it before you build it.</strong> Post your idea in the group in a couple of sentences: what the button does and who presses it. Someone will help you make it simpler, spot a problem early, or point you to a shortcut.</li>
+      <li><strong>Check in every time you have something to show.</strong> A screenshot, a link or a ten-second video is plenty, even when it's rough. Showing your progress often is what keeps you from spending weeks building into the void.</li>
+      <li><strong>Ask the moment you're stuck.</strong> We're in there all the time, and a question that eats your evening is usually a two-minute answer for someone who has hit it before.</li>
+    </ol>
+    <a class="btn" href="https://t.me/everybodycanbuild">Pitch your idea in the group</a>
+  </div>
+  <p style="margin-top:32px">Then tell Claude about your idea the way you'd tell a friend: what it should do, who it's for and what "done" looks like. You can build literally anything this way.</p>
   <ul class="anything">
     <li style="background:var(--yel)">Websites</li>
     <li style="background:var(--grn)">Android apps</li>
@@ -307,11 +338,7 @@ When you've saved them, read the rules back to me as a short list.</pre></div>
     <div class="idea"><b>Hardware</b>I have an ESP32 board and a soil moisture sensor. Tell me how to wire them, write the code, and make it message me on Telegram when my plant needs water.</div>
     <div class="idea"><b>Browser</b>Use my browser to find three flights to Lisbon for the second week of March under $500. Put them in a table, and don't book anything.</div>
   </div>
-  <div class="tg">
-    <h3>This is where the group really helps</h3>
-    <p>Your first build will get stuck somewhere, everybody's does, and that's exactly when the Telegram group earns its place. We're in there all the time helping people get unstuck, so post what you're building and where it went wrong, and come back to show it off when it works.</p>
-    <a class="btn" href="https://t.me/everybodycanbuild">Open the Telegram group</a>
-  </div>
+  <p>And when your first version works, even if it's tiny, post it in the group. That's the moment everybody there is waiting for.</p>
 </section>
 
 <footer>Made by <a href="https://borodutch.com">Nikita Kolmogorov</a> for friends and family who want to build. Not affiliated with Anthropic.</footer>
