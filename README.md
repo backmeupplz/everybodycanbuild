@@ -4,9 +4,9 @@
 
 ## How it works
 
-It is a single static page, `docs/index.html`, with no build step and no dependencies, served by GitHub Pages from `docs/`. Open it in a browser to run it locally.
+It is two static pages with no build step and no dependencies, served by GitHub Pages from `docs/`: the guide, `docs/index.html`, and `docs/marketing.html` at [/marketing](https://everybodycanbuild.com/marketing), seven prompts that build Radiant, a marketing autopilot for SEO, app store search and AI answers. Open them in a browser to run them locally.
 
-The share image `docs/og.png` (1200×630) is rendered from `src/og.html` with headless Chrome (bump `og.png?v=N` in the page when you re-render it).
+The share images `docs/og.png` and `docs/og-marketing.png` (1200×630) are rendered from `src/og.html` and `src/og-marketing.html` with headless Chrome (bump `?v=N` in the page when you re-render one).
 
 ## License
 

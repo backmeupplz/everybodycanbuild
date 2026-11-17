@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Build your own Radiant: a marketing autopilot made with Claude</title>
+<meta name="description" content="Seven prompts you paste into Claude Code to build Radiant, a marketing system of your own that brings people to your products through Google, Bing, app store search and AI assistants, and runs every day on a cheap server.">
+<link rel="canonical" href="https://everybodycanbuild.com/marketing">
+<meta name="theme-color" content="#fff6e6">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Everybody Can Build">
+<meta property="og:url" content="https://everybodycanbuild.com/marketing">
+<meta property="og:title" content="Build your own Radiant">
+<meta property="og:description" content="Seven prompts for Claude Code that build you a marketing system of your own, for SEO, app store search and AI answers, running every day on a cheap server.">
+<meta property="og:image" content="https://everybodycanbuild.com/og-marketing.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Build your own Radiant: a sun made of toy blocks next to the words Build your own Radiant">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build your own Radiant">
+<meta name="twitter:description" content="Seven prompts for Claude Code that build you a marketing system of your own, for SEO, app store search and AI answers, running every day on a cheap server.">
+<meta name="twitter:image" content="https://everybodycanbuild.com/og-marketing.png?v=1">
+<meta name="twitter:image:alt" content="Build your own Radiant: a sun made of toy blocks next to the words Build your own Radiant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff6e6;--card:#fffdf8;--ink:#1d1a16;--mut:#5c554b;--line:#1d1a16;--red:#ff5a4e;--yel:#ffc53d;--blu:#1a66d9;--grn:#2fbf71;--pur:#9b6bff;--code:#1d1a16;--codefg:#fdf6e8;--shadow:#1d1a16}
+@media (prefers-color-scheme:dark){:root{--bg:#17150f;--card:#221f18;--ink:#f6efe2;--mut:#bdb3a2;--line:#f6efe2;--code:#0d0c09;--codefg:#f6efe2;--shadow:#000}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+h1,h2,h3,.btn,.num{font-family:"Bricolage Grotesque",system-ui,sans-serif}
+a{color:inherit;text-decoration-color:var(--blu);text-decoration-thickness:2px;text-underline-offset:3px}
+main{max-width:780px;margin:0 auto;padding:0 16px 80px}
+.back{display:inline-block;margin:28px 0 0;font-weight:700;font-size:.95rem}
+header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:28px 0 24px}
+h1{font-size:clamp(2.8rem,10vw,5.2rem);line-height:.92;margin:0 0 18px;font-weight:800;letter-spacing:-.03em}
+h1 span{display:inline-block;padding:0 .12em;border-radius:.12em;background:var(--yel);color:#1d1a16;transform:rotate(-2deg)}
+.lede{font-size:1.2rem;color:var(--mut);margin:0 0 18px}
+.lede strong{color:var(--ink)}
+.sun{width:150px}
+.sun rect,.sun circle{stroke:var(--line);stroke-width:3}
+.sun .rays{transform-origin:75px 75px;animation:spin 30s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.sun .rays{animation:none}}
+@media (max-width:600px){header{grid-template-columns:1fr}.sun{display:none}}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;padding:12px 20px;border:3px solid var(--line);border-radius:14px;background:var(--blu);color:#fff;text-decoration:none;box-shadow:4px 4px 0 var(--shadow);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--shadow)}
+.btn.alt{background:var(--card);color:var(--ink)}
+.ctas{display:flex;flex-wrap:wrap;gap:14px}
+.needs{background:var(--card);border:3px solid var(--line);border-radius:18px;padding:18px 22px;margin:40px 0 0;box-shadow:6px 6px 0 var(--shadow)}
+.needs h2{margin:0 0 6px;font-size:1.3rem}
+.needs ul{margin:0;padding-left:22px}
+.step{position:relative;margin:56px 0 0;padding-left:72px}
+.num{position:absolute;left:0;top:0;width:52px;height:52px;border:3px solid var(--line);border-radius:12px;display:grid;place-items:center;font-size:1.6rem;font-weight:800;color:#1d1a16;box-shadow:3px 3px 0 var(--shadow)}
+@media (max-width:600px){.step{padding-left:0}.num{position:static;margin-bottom:12px}}
+.step h2{font-size:clamp(1.8rem,6vw,2.4rem);line-height:1.1;margin:0 0 10px;letter-spacing:-.01em}
+.tag{display:inline-block;font:700 .75rem/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:6px 9px;border-radius:8px;border:2px solid var(--line);margin-bottom:12px;background:var(--card)}
+.code{position:relative;background:var(--code);color:var(--codefg);border:3px solid var(--line);border-radius:14px;margin:12px 0 18px}
+.code pre{margin:0;padding:52px 18px 16px;overflow-x:auto;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;white-space:pre-wrap;word-break:break-word}
+.copy{position:absolute;top:10px;right:10px;font:700 .85rem system-ui,sans-serif;padding:6px 12px;border-radius:9px;border:2px solid var(--codefg);background:transparent;color:var(--codefg);cursor:pointer}
+.copy.done{background:var(--grn);border-color:var(--grn);color:#fff}
+.code::before{content:"Paste this into Claude";position:absolute;top:14px;left:18px;font:700 .75rem/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--yel)}
+.note{border-left:6px solid var(--yel);background:var(--card);padding:12px 16px;border-radius:0 12px 12px 0;margin:16px 0;color:var(--mut)}
+.note strong{color:var(--ink)}
+code{font:.9em ui-monospace,Menlo,monospace;background:var(--card);border:1px solid var(--mut);border-radius:5px;padding:1px 5px}
+ol li,ul li{margin:6px 0}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:16px 0}
+.map div{background:var(--card);border:3px solid var(--line);border-radius:14px;padding:14px 16px;font-size:.98rem;box-shadow:3px 3px 0 var(--shadow)}
+.map b{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin-bottom:4px}
+.tg{margin:56px 0 0;background:var(--blu);color:#fff;border:3px solid var(--line);border-radius:22px;padding:26px 24px;box-shadow:8px 8px 0 var(--shadow)}
+.tg h2{font-size:clamp(1.5rem,5vw,2rem);line-height:1.1;margin:0 0 10px}
+.tg p{margin:0 0 16px}
+.tg ul{margin:0 0 20px;padding-left:22px}
+.tg .btn{background:var(--yel);color:#1d1a16}
+footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:64px}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="/">← Everybody Can Build</a>
+<header>
+  <div>
+    <h1>Build your own <span>Radiant</span></h1>
+    <p class="lede"><strong>Radiant</strong> is the marketing department Nikita built with Claude for his apps. It works every day on a cheap server without anyone watching, making his products easier to find in Google and Bing, in the App Store and Google Play, and in the answers of ChatGPT, Claude, Perplexity and Gemini, and it emails him a short report every afternoon.</p>
+    <p class="lede">This page breaks it into seven prompts you paste into Claude Code, one per evening, so you can build the same thing for your own products.</p>
+  </div>
+  <svg class="sun" viewBox="0 0 150 150" aria-hidden="true">
+    <g class="rays">
+      <rect x="67" y="2" width="16" height="30" rx="5" fill="#ff5a4e"/><rect x="67" y="118" width="16" height="30" rx="5" fill="#2fbf71"/>
+      <rect x="2" y="67" width="30" height="16" rx="5" fill="#3d8bff"/><rect x="118" y="67" width="30" height="16" rx="5" fill="#9b6bff"/>
+      <rect x="22" y="22" width="16" height="26" rx="5" fill="#2fbf71" transform="rotate(-45 30 35)"/><rect x="112" y="102" width="16" height="26" rx="5" fill="#ff5a4e" transform="rotate(-45 120 115)"/>
+      <rect x="112" y="22" width="16" height="26" rx="5" fill="#3d8bff" transform="rotate(45 120 35)"/><rect x="22" y="102" width="16" height="26" rx="5" fill="#9b6bff" transform="rotate(45 30 115)"/>
+    </g>
+    <circle cx="75" cy="75" r="34" fill="#ffc53d"/>
+  </svg>
+</header>
+
+<div class="map">
+  <div><b>Search engines</b>Every site stays technically perfect, Lighthouse 100 on every page, with honest pages that answer what people actually search for.</div>
+  <div><b>AI answers</b>Every week it asks AI assistants the questions your future users ask, sees who gets recommended and why, and fixes what it can.</div>
+  <div><b>App stores</b>Keywords, listings in every language your app speaks, store ranks and reviews, followed week by week.</div>
+  <div><b>Content</b>One real piece a day, every fact checked and every step tested, plus listings in the directories and lists that allow them.</div>
+</div>
+
+<section class="needs">
+  <h2>What you need</h2>
+  <ul>
+    <li>Claude set up the way the <a href="/#setup">main guide</a> describes, especially the password vault, Tailscale and the building rules, because Radiant leans on all three.</li>
+    <li>At least one product to market, with a website or a store listing and its code in a GitHub repository.</li>
+    <li>From the third prompt on, a small server. A cheap one from the Hetzner server auction is plenty, and Claude helps you rent it.</li>
+    <li>A Google account for your marketing that you create yourself, because Radiant never creates accounts or types passwords.</li>
+    <li>Patience, because search engines and AI assistants move over weeks rather than days, and Radiant judges itself by the people it brings you, not by the pages it writes.</li>
+  </ul>
+</section>
+
+<div class="note"><strong>How to paste these:</strong> open a terminal, type <code>claude</code>, paste one prompt and let it work. Each prompt starts by finding the Radiant repository, so a fresh session every evening is fine, and each one ends with Claude showing you that the step works. Claude stops and asks whenever it needs you to sign in, click a switch or decide something.</div>
+
+<section class="step" id="foundation">
+  <div class="num" style="background:var(--red)">1</div>
+  <span class="tag">On your computer</span>
+  <h2>Lay the foundation</h2>
+  <p>Radiant is a Git repository first: every rule, plan, prompt, script, number and report is a plain file in it, so any Claude session can pick up where the last one stopped and you can read everything it knows. This prompt interviews you about your products and writes the charter, the rules every agent reads before it does anything.</p>
+  <div class="code"><pre>I want you to build me my own marketing department: a private system called Radiant that brings people to my products through Google, Bing, app store search and AI assistants like ChatGPT, Claude, Perplexity and Gemini. Today we only lay its foundation on this computer, and later I'll ask you to move it to a server where it works every day on its own.
+
+1. Interview me first, one question at a time, about every product I want to market: what it does and for whom, its website, store listings and code repository, who it competes with, where it's better and where it's weaker, any numbers I have (users, downloads, stars), and anything you must never do or say about it. Then ask how much money a month I'm willing to spend on marketing, which may be zero, and ask me to paste a few things I've written so you learn my voice. Finally, ask which Google account I use for marketing, and if I don't have a separate one yet, tell me to create it myself.
+2. Create a Git repository named radiant in a code folder in my home directory and push it to a new private GitHub repository. Check that the GitHub CLI is installed and signed in first, and if it isn't, install it and walk me through signing in, because the sign-in is mine. The repository is the whole system: every rule, plan, prompt, script, piece of data and report lives in it as plain files.
+3. Write CHARTER.md, the rules every agent reads before each run.
+   The mission: bring real users to my products by making them discoverable in search engines, store search and AI answers, and count success in users (installs, sign-ups, visits from search and AI), never in pages written or tasks closed.
+   The way of working: evidence first, quality over volume, true and sourced claims, comparisons that are fair and dated, and small steps that are easy to undo.
+   The hard rules:
+   - Never post, comment or reply in communities (Reddit, Hacker News, Product Hunt, forums, Discord, Telegram groups) or under other people's posts, and never email or message another person without my approval.
+   - No fake personas, fake reviews, paid or swapped links, hidden text, doorway pages, mass-produced pages, or text written to manipulate search engines or AI crawlers.
+   - Never type passwords, get around a captcha, create accounts or give out a phone number. Sign-ins and sign-ups are mine, so ask me.
+   - Never spend money outside the caps in budget.yml, never enter card details, and record every spend.
+   - Changes to my sites and apps go through pull requests, and production you didn't create stays untouched, DNS records included. Ask me before any DNS change, any new account and any access you'd grant to someone.
+   - Respect the rules of every site and list, especially ones that forbid AI-written or automated submissions.
+   - Secrets never go into the repository, a chat or an email.
+   CHARTER.md and budget.yml are mine: agents may change everything else in the repository, but never these two.
+4. Create approvals.md for my decisions as dated lines, budget.yml with my monthly caps, and a folder per product under projects/ with project.yml (facts, links, competitors, constraints) and plan.md (what to do first and why). Add experiments/ with a short template (what we change, which number it should move, when we decide, and a dated log), and knowledge/ with notes on my voice: full flowing sentences, no hype words and no clipped fragments like "Fast. Simple. Yours."
+5. Write README.md explaining what exists and how to work with it, and add one line to the CLAUDE.md file in my home folder's .claude directory saying where this repository lives, so every future session finds it.
+
+Commit, push, and then show me each product's plan in a few lines.</pre></div>
+</section>
+
+<section class="step" id="baseline">
+  <div class="num" style="background:var(--yel)">2</div>
+  <span class="tag">On your computer</span>
+  <h2>Find out where you stand</h2>
+  <p>Before Radiant changes anything, it measures: how search engines see your sites, where you rank, and what AI assistants answer when a stranger asks for something like your product. The AI part is the heart of Radiant. Assistants mostly recommend what the pages they cite recommend, so for every question you lose, Claude works out which pages shaped the answer and what one change could win it.</p>
+  <div class="code"><pre>Find my Radiant marketing repository (the CLAUDE.md in my home folder's .claude directory says where, and if it doesn't, ask me), read its README, CHARTER.md and every project, and build a baseline for each product. Use my browser when you need one, and stop for me whenever a step needs a sign-in.
+
+1. Audit each website the way a search engine sees it. Read the raw HTML with curl, because web fetch tools drop the head, where titles, descriptions, canonical links, Open Graph tags and structured data live. Check robots.txt, the sitemap, llms.txt, structured data (SoftwareApplication or MobileApplication, and Organization with links to the product's profiles), share images, and Lighthouse on mobile and desktop. The bar is 100 in every Lighthouse category on every page.
+2. Check whether each site is indexed (site: searches on Google and Bing) and where it ranks for its brand name and its two or three main searches.
+3. Help me add every site to Google Search Console and Bing Webmaster Tools under my marketing Google account, verify them and submit their sitemaps. Prefer verification by HTML file, and ask me before you add any DNS record.
+4. For apps, find their App Store and Google Play listings and where they rank for the words people use to find apps like them.
+5. Write agents/questions.yml: for each product, five to ten questions a stranger would ask an AI assistant right before choosing a product like mine, worded without naming it. Give each question the Google search people type for the same decision and the page of mine meant to answer it, and leave the page out when I have none, because that gap is a finding in itself.
+6. Write a script that asks each question to Claude headless (read https://code.claude.com/docs/en/headless for how) from an empty temporary folder with only web search and web fetch allowed and without my CLAUDE.md, memory or MCP servers loaded (check the docs for how), so it knows nothing about me, and records the answer, who was recommended and which pages were cited in data/ai/ with the date in the file name. Run it once.
+7. For every question where I wasn't named, write projects/&lt;product&gt;/ai-gaps.md with the reason, because the reason decides the fix: a missing page (nothing of mine answers it), a weak page (mine doesn't answer it directly, in the searcher's words, with proof), not found (my page isn't indexed or ranked where the assistant searches), or third-party sources (the answer is built from other sites' pages). Sort each cited page that isn't mine into OWN (mine to fix), CLAIM (a listing or profile I'm entitled to), EARN (articles and reviews we can only earn by being worth citing) and CONTEST (pages that are wrong about me), and name the one next change for the question.
+8. Fix the technical foundations in each product's repository on a branch named radiant/something, open a pull request for each, and tell me in plain words what each one changes so I can merge it.
+
+Save it all in the repository with a dated report in reports/, commit, push, and give me a short summary of where each product stands.</pre></div>
+</section>
+
+<section class="step" id="server">
+  <div class="num" style="background:var(--grn)">3</div>
+  <span class="tag">On a server</span>
+  <h2>Give Radiant a daily routine</h2>
+  <p>Now Radiant moves to a server so it works while your computer is off. Three agents share the work: an operator does the day's most useful tasks, a reviewer checks everything and writes your report, and once a week a strategist steps back, judges what worked from the numbers and rewrites the plans. Until you say otherwise in the last step, everything that touches your sites arrives as a pull request for you to merge.</p>
+  <div class="code"><pre>Find my Radiant marketing repository, read its README and CHARTER.md, and move Radiant onto a server so it works every day while my computer is off. If my CLAUDE.md mentions a Hetzner server with Tugport, use it; otherwise help me rent a cheap one from the Hetzner server auction and set it up with Tugport first. Read https://code.claude.com/docs/en/headless and the Claude Code docs on long-lived authentication tokens before you start. Then check my CLAUDE.md for my server, Tugport, Mailgun and password vault, list what's missing and what only I can do, and ask me before renting or buying anything.
+
+1. Build a worker container with Claude Code, Git, Python and Node that keeps its state on a volume. It runs a small scheduler that reads schedule.yml from the repository, with times in UTC, so changing the schedule is a commit rather than a deploy.
+2. Every job runs in its own fresh Git worktree and commits what it changed. Then a guard script restores the owner-only files named in CHARTER.md and refuses to push if the diff contains anything that looks like a secret, and only then does the job push. A sync job keeps the live checkout on the newest main every minute, and the worker runs its scripts from that checkout, so Radiant can improve itself without a redeploy.
+3. Claude runs headless on a long-lived token. I run claude setup-token myself and save the token in my vault, and you never print it. Check Anthropic's current terms for running Claude Code unattended on a subscription and tell me what they say, explain whether I should buy a second Claude subscription just for Radiant so it never eats into the usage I build with, and let me choose. Check the docs for a way to keep the token out of the agents' shell environment, and use it if there is one.
+4. Write the agent prompts in agents/:
+   - an operator that runs every morning, reads the charter, approvals, plans, experiments, newest data and recent reports, picks at most three tasks with the most expected effect on users arriving from search and AI, finishes them, keeps the plans true and writes reports/ops/&lt;date&gt;.md;
+   - a reviewer that runs after it, checks the last 24 hours against the charter and for quality, fixes small mistakes, reverts anything that breaks the charter, and writes a daily report short enough to read on a phone: what changed, the numbers, the experiments, open problems, and what it needs from me;
+   - a strategist that runs weekly, decides from the numbers what's working and what isn't, rewrites the plans and an overview.md, and improves the machine itself.
+   Anything that changes my sites goes out as a pull request for me to merge.
+5. Email me the daily report through Mailgun, to my address only. If I don't have Mailgun set up, walk me through it, and use its sandbox domain with my address as an authorized recipient until I have a domain of my own. When an agent is blocked on an important decision or on access, it may email me right away, a few times a day at most, and it never asks for secrets by email.
+6. Serve a small, fast dashboard from the repository over Tailscale only, never on the public internet: an overview, every project with its plan and numbers, the experiments, the reports, and the jobs with their logs.
+7. Give me the steps only I can do one at a time, and ask me before you create DNS records.
+
+Update the README with how a change reaches the server, so later sessions on my computer know to push to the repository and let the sync job pick it up. Then run each job once by hand, show me the logs, the dashboard and the first email, and fix whatever fails.</pre></div>
+</section>
+
+<section class="step" id="keyring">
+  <div class="num" style="background:var(--pur)">4</div>
+  <span class="tag">On a server</span>
+  <h2>Keep its keys locked away</h2>
+  <p>Radiant needs keys for Search Console, Bing, Mailgun, Cloudflare, GitHub and more, and an agent that reads the web all day should never hold them, since a page it reads could trick it into leaking one. So the keys live in a separate service, the keyring, which makes each call itself and only allows the calls you wrote down in advance.</p>
+  <div class="code"><pre>Find my Radiant marketing repository and read its README and CHARTER.md. Radiant's agents will need API keys, but I never want a key inside their environment, where a confused agent or a malicious web page could leak it. Build Radiant a keyring. First check that my vault and its helper from CLAUDE.md work, and if they don't, stop and tell me to set them up with the everybodycanbuild.com guide.
+
+1. A separate small service on the same server holds every third-party key and makes the API calls itself. Agents ask it through a helper such as call.py &lt;key&gt; &lt;method&gt; &lt;url&gt; [body], authenticated with a token only the worker has, and get the response back with every trace of the key replaced.
+2. Each key gets a policy in a file I own (add it to the owner-only files): the hosts, methods and paths it may call, and conditions on the request body where they matter, for example that GitHub writes only go to branches starting with radiant/ and that Mailgun only sends to my address. Everything else is refused. Also refuse requests that carry a browser Origin header, never follow redirects, and reject paths with encoded slashes, dot segments or other tricks.
+3. Log every call to a file the dashboard shows, and have the reviewer read that log daily and flag anything odd.
+4. The keys come from my Vaultwarden through the helper my CLAUDE.md describes. Write a script I run on my own computer that copies named vault items into the keyring service's environment and redeploys it without ever printing a value.
+5. Move every key the worker holds today into the keyring, except the Claude token and the deploy key that pushes the repository.
+6. Write a self-check that proves each kind of refusal works, and run it.
+
+Then tell me which keys to create first and where, one at a time.</pre></div>
+</section>
+
+<section class="step" id="measure">
+  <div class="num" style="background:var(--red)">5</div>
+  <span class="tag">On a server</span>
+  <h2>Give it eyes</h2>
+  <p>Radiant only doubles down on what the numbers say worked, so it needs numbers every day: search clicks and rankings, its own privacy-friendly analytics, Lighthouse for every page, store ranks and reviews, and the weekly AI answers. It also gets its own browser on the server, where you sign in once to the consoles that have no API.</p>
+  <div class="code"><pre>Find my Radiant marketing repository and read its README and CHARTER.md, then give Radiant every number it needs to judge its own work. Collect each kind daily into data/&lt;kind&gt;/&lt;date&gt;.jsonl, one file per day so jobs never conflict, and chart them on the dashboard.
+
+1. Give Radiant its own Chromium on the server with a desktop I can open over Tailscale only (noVNC is fine), where I sign in once with my marketing Google account to Search Console, Bing Webmaster Tools and anything else it needs. Agents drive it through the DevTools protocol. Add an hourly check that notices when a site has signed us out and puts that on the dashboard and in the email.
+2. Search: daily Google Search Console and Bing Webmaster Tools numbers for every site (clicks, impressions, position, top queries and top pages), through their APIs and the keyring when I give you keys and through the browser otherwise. Include Google's AI Overviews and AI Mode numbers and Bing's Copilot citations, which only the web consoles show.
+3. Analytics: build a tiny privacy-friendly analytics service of our own instead of paying for one, with a script well under 1 KB, no cookies, a daily-rotating hash instead of tracking people, bots skipped, and outbound clicks and downloads counted. Ask me before adding it to each site, and skip any site whose privacy policy promises no analytics.
+4. Lighthouse every night for every page in every sitemap, on mobile and desktop and in light mode, plus an hourly run for pages published since the last one. Any page below 100 becomes the operator's first task.
+5. IndexNow pings for new and changed pages, daily.
+6. For apps, weekly store search ranks in the App Store and Google Play for each app's target keywords in every country it targets, and new store reviews every few hours. Use public APIs where they exist, ask slowly, and stop when a store answers with a captcha.
+7. The AI answer tracker from the baseline runs weekly, and one question can be rerun by itself after a fix, into a separate file so reruns never mix with the weekly numbers. Add Gemini with Google Search grounding when I give you a key, and keep its numbers apart from Claude's. A lost question only counts as won once we're named in two runs in a row.
+8. Teach the operator and the strategist to use all of this: rewrite each ai-gaps.md after every tracker run, make one change per lost question, rerun it once the change is live, and double down only on the kinds of change that brought users.
+
+Run every collector once, show me the dashboard with real numbers, and list the keys and sign-ins you still need from me.</pre></div>
+</section>
+
+<section class="step" id="publish">
+  <div class="num" style="background:var(--yel)">6</div>
+  <span class="tag">On a server</span>
+  <h2>Let it publish</h2>
+  <p>Content is where most AI marketing goes wrong, because a hundred thin pages get a site buried. Radiant writes one piece a day at most, only when it has something real to say, and a missed day beats a thin page. The same care goes into store listings, honest directory entries and translations.</p>
+  <div class="code"><pre>Find my Radiant marketing repository and read its README and CHARTER.md, then let Radiant publish. First ask me where each product's posts should live (an existing blog, a blog section on the product's site, or a new one) and which channels I want, and record my answers in approvals.md.
+
+1. A writer agent publishes one piece a day from content-calendar.yml, rotating across my products, and it never skips these gates:
+   - Real substance or nothing: our own numbers, steps we actually ran, a benchmark, or a release and what changed. A missed day is better than a thin page.
+   - No near-duplicates: when a page already answers the question, improve that page instead.
+   - Every fact checked against its source the same day, and every step of a guide run before it ships, with the date and versions on the page.
+   - Full flowing sentences in my voice, the answer in the first paragraph, and headings in the words people search with.
+2. publishing.yml holds a schedule for each channel, so nothing goes out off schedule and an empty slot stays empty.
+3. The reviewer opens everything published in the last 24 hours, checks its facts, share image, phone layout and Lighthouse score, fixes small mistakes, and unpublishes anything wrong or thin the same day.
+4. The strategist refills the calendar every week from evidence, starting with Search Console queries that get impressions but no clicks, which usually need a better first paragraph on the page that already ranks rather than a new page.
+5. Off-site work: ask me which kinds I allow, such as honest listings in directories that are free and don't demand a backlink, pull requests to awesome lists and ecosystem pages whose rules allow them, and AI tool registries where my products fit, and record my answer in approvals.md. Then do only those, once per place, and keep a ledger so nothing is ever submitted twice.
+6. Store optimization for my apps: keyword research per country, and titles, subtitles, descriptions and screenshot captions for each store and every language the app supports, followed by a weekly look at the ranks. Store changes come to me as ready-to-paste drafts unless I give you access.
+7. Translations: translate the pages that bring visitors into the languages each product's users speak, each language on its own URL with hreflang links and no automatic language redirects.
+
+Publish the first piece from start to finish while I watch, and show me the calendar for the next two weeks.</pre></div>
+</section>
+
+<section class="step" id="autopilot">
+  <div class="num" style="background:var(--grn)">7</div>
+  <span class="tag">Only when you trust it</span>
+  <h2>Let it run on its own</h2>
+  <p>Until now you merge every change yourself, and you can keep it that way for as long as you like. Once its reports have earned your trust, this prompt lets Radiant run without waiting on you: its agents stop asking for permission, it merges its own pull requests when the checks pass, and it launches the experiments you approve on the dashboard. The keyring, the guard and the charter stay as the hard limits.</p>
+  <div class="code"><pre>Find my Radiant marketing repository and read its README and CHARTER.md. I've watched Radiant's reports for a while and I'm asking for this deliberately: I want its agents to run headless with full permissions so they never wait on a prompt, and I want Radiant to merge its own pull requests on my sites once their checks pass. The keyring, the guard and the owner-only files stay as the real limits.
+
+1. Switch the agents in Radiant's worker on the server to full permissions (look up the current way in https://code.claude.com/docs/en/headless), never on this computer or in my own settings, and explain the risk to me in two sentences before you do.
+2. Radiant may merge its own pull request only when its branch starts with radiant/, it's in my own repository, and CI passed on the exact commit being merged. Make the keyring check all of that, so the rule doesn't depend on the agent remembering it. After every merge, Radiant checks that the change is live and works, and opens a fix or a revert at once if it doesn't. Releases, tags and other people's pull requests stay mine.
+3. Experiments: anything new, such as a new channel, a paid test or a change to how a product is positioned, starts as a proposal file with what changes, who sees it, the number it should move and when it stops. The dashboard shows proposals waiting for me with Approve and Request changes buttons that only I can use, checked against my Tailscale identity rather than trusted to the page, and approved ones launch by themselves. Every running experiment gets a dated log line and a verdict each week, and the operator steers it to the end without asking me, as long as it stays inside what I approved. Anything that spends money shows its spend against its cap every day, and a cap only goes up with my approval.
+4. Let me answer Radiant by replying to its emails. Only replies from my own address that pass DMARC count, and a reply can never change CHARTER.md, the budget or the keyring's policies. Each one is filed in the repository, and an agent turns it into a line in approvals.md and confirms by email.
+
+Then show me a full day of the schedule, and tell me the one line that pauses everything if I ever need it.</pre></div>
+</section>
+
+<section class="tg">
+  <h2>Living with your Radiant</h2>
+  <p>After the last prompt there's nothing left to build, only a report to read every afternoon. When you want something changed, open Claude in the Radiant repository and say it in plain words, like "pause the blog for a week", "add my new app" or "make the email shorter", and Claude edits the files and pushes.</p>
+  <ul>
+    <li>Give it a few weeks before you judge it, because Google and the AI assistants take that long to notice changes.</li>
+    <li>Read the pull requests and experiments it sends you, since that's where its judgment shows.</li>
+    <li>Show the group your first report, and ask there when a step goes sideways.</li>
+  </ul>
+  <a class="btn" href="https://t.me/everybodycanbuild">Ask in the Telegram group</a>
+</section>
+
+<footer>Made by <a href="https://borodutch.com">Nikita Kolmogorov</a> for friends and family who want to build. Not affiliated with Anthropic.</footer>
+</main>
+<script>
+document.querySelectorAll('a[href^=http]').forEach(a=>{a.target='_blank';a.rel='noopener'})
+document.querySelectorAll('.code').forEach(c=>{const b=document.createElement('button');b.className='copy';b.textContent='Copy';b.onclick=()=>navigator.clipboard.writeText(c.querySelector('pre').innerText).then(()=>{b.textContent='Copied!';b.classList.add('done');setTimeout(()=>{b.textContent='Copy';b.classList.remove('done')},1600)});c.append(b)})
+</script>
+</body>
+</html>
